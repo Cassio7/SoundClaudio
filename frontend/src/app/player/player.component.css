@@ -1,0 +1,30 @@
+.content {
+    max-width: 1350px;
+    margin: auto;
+}
+.navbar-light{
+    background-color: #f2f2f2;
+    border: 1cm;
+}
+.unpress{
+    border: none;
+    padding: 0;
+    background: none;
+    margin-right: 18px;
+}
+.progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 18px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #2196f3;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+  }
+  
