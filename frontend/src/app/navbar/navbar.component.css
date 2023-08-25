@@ -12,3 +12,7 @@
   max-width: fit-content;
   margin: auto;
 }
+li {
+    list-style-type: none;
+    margin-left: 12px;
+}
