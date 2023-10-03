@@ -1,6 +1,6 @@
 .content {
-    max-width: 1350px;
-    margin: auto;
+    max-width: 100%;
+    margin: auto;   
 }
 .navbar-light{
     background-color: #f2f2f2;

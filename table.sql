@@ -1,3 +1,7 @@
+--Query for database
+
+DROP TABLE users, songs;
+
 create table users(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
