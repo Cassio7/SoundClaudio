@@ -6,15 +6,19 @@ import { FormControl ,FormGroup, Validators } from '@angular/forms';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent implements OnInit{
   
+  //var for all the input from the form, 
+  //FormGroup Tracks the value and validity state 
   signupForm!: FormGroup;
 
-  constructor() {}
-
+  //function called after the creation of the project
   ngOnInit(): void {
+    //initialize with a function
     this.signupForm = this.createFormGroup();
   }
+  //return a FormGruop object, inside we have all the inputs, with a validation
   createFormGroup(): FormGroup{
     return new FormGroup({
       name: new FormControl("", [Validators.required, Validators.minLength(2)]),
@@ -22,10 +26,14 @@ export class SignupComponent implements OnInit{
       password: new FormControl("", [Validators.required, Validators.minLength(7)]),
     })
   }
+  //signup function, starts when press button
   signup(): void{
     if (this.signupForm.valid)
-    console.log(this,this.signupForm.value);
-    else
-    console.log("LLLLLLLLLL")
+      console.log(this.signupForm.value);
+    else{
+      console.log(this.signupForm.controls["name"].valid)
+      console.log(this.signupForm.controls["email"].valid)
+      console.log(this.signupForm.controls["password"].valid)
+    }
   }
 }
