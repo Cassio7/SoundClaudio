@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl ,FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -7,8 +7,8 @@ import { FormControl ,FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 
-export class SignupComponent implements OnInit{
-  
+export class SignupComponent implements OnInit {
+
   //var for all the input from the form, 
   //FormGroup Tracks the value and validity state 
   signupForm!: FormGroup;
@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit{
     this.signupForm = this.createFormGroup();
   }
   //return a FormGruop object, inside we have all the inputs, with a validation
-  createFormGroup(): FormGroup{
+  createFormGroup(): FormGroup {
     return new FormGroup({
       name: new FormControl("", [Validators.required, Validators.minLength(2)]),
       email: new FormControl("", [Validators.required, Validators.email]),
@@ -27,13 +27,17 @@ export class SignupComponent implements OnInit{
     })
   }
   //signup function, starts when press button
-  signup(): void{
+  signup(): void {
     if (this.signupForm.valid)
       console.log(this.signupForm.value);
-    else{
-      console.log(this.signupForm.controls["name"].valid)
-      console.log(this.signupForm.controls["email"].valid)
-      console.log(this.signupForm.controls["password"].valid)
+    else {
+      if (!this.signupForm.controls["name"].valid)
+        console.log(1)
+      if (!this.signupForm.controls["email"].valid)
+        console.log(2)
+      if (!this.signupForm.controls["password"].valid)
+        console.log(3)
     }
   }
+
 }
