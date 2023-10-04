@@ -34,6 +34,7 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.valid && this.signupForm.value["password"] == this.signupForm.value["password_verify"])
       console.log(this.signupForm.value);
     else {
+      //changing when psw not matching
       this.flag = 1
     }
   }
