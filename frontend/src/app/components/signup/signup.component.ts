@@ -21,23 +21,21 @@ export class SignupComponent implements OnInit {
   //return a FormGruop object, inside we have all the inputs, with a validation
   createFormGroup(): FormGroup {
     return new FormGroup({
-      name: new FormControl("", [Validators.required, Validators.minLength(2)]),
+      //allow only name with no space and weird char, min 2 
+      name: new FormControl("", [Validators.required, Validators.minLength(4), Validators.pattern(/^[^\s][a-zA-Z0-9][a-zA-Z0-9\\s+-_]*$/)]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required, Validators.minLength(7)]),
+      //accept only pass with 1 upper letter, 1 number and 1 special char.. min 7 char
+      password: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
+      password_verify: new FormControl("", [Validators.required, Validators.minLength(7),Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
     })
   }
   //signup function, starts when press button
   signup(): void {
-    if (this.signupForm.valid)
+    if (this.signupForm.valid && this.signupForm.value["password"] == this.signupForm.value["password_verify"])
       console.log(this.signupForm.value);
     else {
-      if (!this.signupForm.controls["name"].valid)
-        console.log(1)
-      if (!this.signupForm.controls["email"].valid)
-        console.log(2)
-      if (!this.signupForm.controls["password"].valid)
-        console.log(3)
+      //window.location.reload();
+      console.log(this.signupForm)
     }
   }
-
 }

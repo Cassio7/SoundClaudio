@@ -1,6 +1,50 @@
-<form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
-    <input type="text" placeholder="name" formControlName="name"><br>
-    <input type="text" placeholder="email" formControlName="email"><br>
-    <input type="password" placeholder="password" formControlName="password">
-    <button class="btn btn-warning" type="submit">Signup</button>
-</form>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+              <h3 class="mb-5">Sign up</h3>
+
+              <div class="form-outline mb-4">
+                <span style="color: red;" *ngIf="!signupForm.get('name')?.valid && signupForm.get('name')?.touched">
+                  Incorrect, min of 2 value</span>
+                <input type="text" class="form-control form-control-lg" formControlName="name" />
+                <label class="form-label" >Username</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <span style="color: red;" *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
+                  Incorrect format</span>
+                <input type="email" class="form-control form-control-lg" formControlName="email" />
+                <label class="form-label">Email</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <span style="color: red;" *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">
+                  Incorrect, min of 7 value</span>
+                <input type="password" class="form-control form-control-lg"
+                  formControlName="password" />
+                <label class="form-label">Password</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <span style="color: red;" *ngIf="!signupForm.get('password_verify')?.valid && signupForm.get('password_verify')?.touched">
+                  Incorrect, min of 7 value</span>
+                <input type="password" class="form-control form-control-lg" formControlName="password_verify" />
+                <label class="form-label">Password Verify</label>
+              </div>
+
+              <button [disabled]="!signupForm.valid" class="btn btn-lg btn-block" id="button1" type="submit">Sign Up</button>
+              
+            </form>
+            <hr class="my-4">
+            <label class="form-label">Are you already sign up?<br>Go to the login page!!</label>
+            <button class="btn btn-dark btn-lg btn-block" routerLink="/login">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
