@@ -1,30 +1,22 @@
-.content {
-    max-width: 100%;
-    margin: auto;   
-}
-.navbar-light{
+.navbar-light {
     background-color: #f2f2f2;
     border: 1cm;
 }
-.unpress{
+
+.unpress {
     border: none;
     padding: 0;
     background: none;
     margin-right: 18px;
 }
-.progress-bar-container {
-    width: 100%;
-    height: 20px;
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    display: inline-block;
-    margin-right: 18px;
-  }
-  
-  .progress-bar {
+
+.progress{
+    height: 5px;
+    z-index: 1000;
+}
+.progress-bar {
     height: 100%;
-    background-color: #2196f3;
-    border-radius: 4px;
+    width: 50%;
+    background-color: #f50;
     transition: width 0.3s ease-in-out;
-  }
-  
+}

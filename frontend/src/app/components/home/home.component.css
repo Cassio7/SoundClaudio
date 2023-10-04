@@ -1,0 +1,11 @@
+/*da togliere */
+
+.progress{
+    height: 5px;
+}
+.progress-bar {
+    height: 100%;
+    width: 50%;
+    background-color: #f50;
+    transition: width 0.3s ease-in-out;
+}
