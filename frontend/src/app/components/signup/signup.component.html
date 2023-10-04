@@ -33,6 +33,8 @@
                 <span style="color: red;"
                   *ngIf="!signupForm.get('password_verify')?.valid && signupForm.get('password_verify')?.touched">
                   Incorrect, min of 7 value</span>
+                <span style="color: red;" *ngIf="flag>0">
+                  The passwords doesn't match</span>
                 <input type="password" class="form-control form-control-lg" formControlName="password_verify" />
                 <label class="form-label">Password Verify</label>
               </div>

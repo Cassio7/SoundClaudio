@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   //var for all the input from the form, 
   //FormGroup Tracks the value and validity state 
   signupForm!: FormGroup;
-
+  flag = 0
   //function called after the creation of the project
   ngOnInit(): void {
     //initialize with a function
@@ -27,15 +27,14 @@ export class SignupComponent implements OnInit {
       //accept only pass with 1 upper letter, 1 number and 1 special char.. min 7 char
       password: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
       password_verify: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
-    })
+      })
   }
   //signup function, starts when press button
   signup(): void {
     if (this.signupForm.valid && this.signupForm.value["password"] == this.signupForm.value["password_verify"])
       console.log(this.signupForm.value);
     else {
-      //window.location.reload();
-      console.log(this.signupForm)
+      this.flag = 1
     }
   }
 }
