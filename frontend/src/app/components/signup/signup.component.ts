@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
       email: new FormControl("", [Validators.required, Validators.email]),
       //accept only pass with 1 upper letter, 1 number and 1 special char.. min 7 char
       password: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
-      password_verify: new FormControl("", [Validators.required, Validators.minLength(7),Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
+      password_verify: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
     })
   }
   //signup function, starts when press button

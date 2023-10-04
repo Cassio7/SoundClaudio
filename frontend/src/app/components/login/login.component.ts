@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   createFormGroup(): FormGroup {
     return new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required, Validators.minLength(7)]),
+      password: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)]),
     })
   }
   //login function, starts when press button
@@ -30,10 +30,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid)
       console.log(this.loginForm.value);
     else {
-      if (!this.loginForm.controls["email"].valid)
-        console.log(1)
-      if (!this.loginForm.controls["password"].valid)
-        console.log(2)
       window.location.reload();
     }
   }
