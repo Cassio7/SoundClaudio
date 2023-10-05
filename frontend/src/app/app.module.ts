@@ -15,6 +15,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LibreriaComponent } from './components/libreria/libreria.component';
 import { CaricaComponent } from './components/carica/carica.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DiscroverComponent } from './components/discrover/discrover.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LibreriaComponent,
     CaricaComponent,
     FooterComponent,
+    DiscroverComponent,
   ],
   imports: [
     BrowserModule,
