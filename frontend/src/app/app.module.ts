@@ -28,7 +28,7 @@ import { DiscroverComponent } from './components/discrover/discrover.component';
     LibreriaComponent,
     CaricaComponent,
     FooterComponent,
-    DiscroverComponent,
+    DiscroverComponent
   ],
   imports: [
     BrowserModule,
