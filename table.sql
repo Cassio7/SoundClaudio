@@ -11,14 +11,28 @@ create table users(
     UNIQUE (email)
 );
 
+create table albums(
+    id int primary key AUTO_INCREMENT,
+    name varchar(250),
+    artist_name varchar(250)
+);
+
 create table songs(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
     artist_name varchar(250),
-    id_user int,
+    id_album int,
     durata float,
     mp3 varchar(250),
-    FOREIGN KEY (id_user) REFERENCES users(id)
+    FOREIGN KEY (id_album) REFERENCES albums(id)
+);
+
+create table libraries(
+    id int primary key AUTO_INCREMENT,
+    id_user int,
+    id_song int,
+    FOREIGN KEY (id_user) REFERENCES users(id),
+    FOREIGN KEY (id_song) REFERENCES songs(id)
 );
 
 insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.it','password','1');
