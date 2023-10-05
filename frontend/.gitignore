@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #Added by me
-.env
+/home/cassio/angular/SoundClaudio/.env
