@@ -1,6 +1,6 @@
 --Query for database
 
-DROP TABLE users, songs;
+DROP TABLE users, albums, songs, librarie, comments;
 
 create table users(
     id int primary key AUTO_INCREMENT,
@@ -31,6 +31,15 @@ create table libraries(
     id int primary key AUTO_INCREMENT,
     id_user int,
     id_song int,
+    FOREIGN KEY (id_user) REFERENCES users(id),
+    FOREIGN KEY (id_song) REFERENCES songs(id)
+);
+
+create table comments(
+    id int primary key AUTO_INCREMENT,
+    id_user int,
+    id_song int,
+    comment text,
     FOREIGN KEY (id_user) REFERENCES users(id),
     FOREIGN KEY (id_song) REFERENCES songs(id)
 );
