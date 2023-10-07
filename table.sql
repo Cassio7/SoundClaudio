@@ -1,11 +1,12 @@
 --Query for database
 
-DROP TABLE users, albums, songs, librarie, comments;
+DROP TABLE users, albums, songs, libraries, comments;
 
 create table users(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
     email varchar(250),
+    salt varchar(250),
     password varchar(250),
     admin boolean,
     UNIQUE (email)
