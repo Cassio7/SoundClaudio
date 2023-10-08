@@ -8,7 +8,7 @@ require('dotenv').config();
 router.post('/signup', (req, res) => {
     let users = req.body;
     users.email = users.email.toLowerCase(); 
-    query = "select email from users where email=?"
+    query = "select id,email from users where email=?"
     connection.query(query, [users.email], (err, results) => {
         if (err) {
             return res.status(500).json(err);
@@ -20,7 +20,8 @@ router.post('/signup', (req, res) => {
                     query = "insert into users(name, email, password ,admin) values(?,?,?,0)";
                     connection.query(query, [users.name, users.email, hash], (err, results) => {
                         if (!err) {
-                            return res.status(200).json({ message: "Successfully Registred" });
+                            const token = jwt.sign({user : users.id}, process.env.TOKEN_KEY,{ expiresIn: '1800s' });
+                            return res.status(400).json(token);
                         }
                         else {
                             return res.status(500).json(err);
@@ -52,8 +53,6 @@ router.post('/login', (req, res) => {
                     // if res == true, password matched
                     if (ress == true){
                         const token = jwt.sign({user : users.id}, process.env.TOKEN_KEY,{ expiresIn: '1800s' });
-                        const decoded = jwt.verify(token, process.env.TOKEN_KEY);
-                        console.log(decoded)
                         return res.status(400).json(token);
                     }
                     else{
