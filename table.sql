@@ -6,7 +6,6 @@ create table users(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
     email varchar(250),
-    salt varchar(250),
     password varchar(250),
     admin boolean,
     UNIQUE (email)
@@ -44,7 +43,7 @@ create table comments(
     FOREIGN KEY (id_user) REFERENCES users(id),
     FOREIGN KEY (id_song) REFERENCES songs(id)
 );
-
-insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.it','password','1');
+-- The admin password is "password" but with hash
+insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.it','$2b$10$FRf91ll8eyB3hU3h22C68ukze6Ff60MZMAlivv6HDVmwWZgta2bU6','1');
 
 insert into songs(name,artist_name,durata,mp3) value('Working Out','JID','3.46','D:\\Angular\\soundclaudio\\mp3\\Workin_Out.mp3');
