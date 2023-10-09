@@ -1,21 +1,29 @@
 const express = require('express');
 const connection = require('../connection');
 const router = express.Router();
+
+// module for hashing the password
 const bcrypt = require('bcrypt');
+
+// module for auth for the user
 const jwt = require("jsonwebtoken")
 require('dotenv').config();
 
+// link 2 needed functions
 const auth = require('../services/auth');
 const check = require('../services/checkadmin');
 
+// signup anon function, create new user and return token
 router.post('/signup', (req, res) => {
     let users = req.body;
+    // lowercase email
     users.email = users.email.toLowerCase();
+    // query for check email already exists, ? wait a input 
     query = "select email from users where email=?"
+    // send the query and replace
     connection.query(query, [users.email], (err, results) => {
-        if (err) {
+        if (err) 
             return res.status(500).json(err);
-        }
         else {
             if (results.length <= 0) {
                 const saltRounds = 10;
@@ -27,25 +35,23 @@ router.post('/signup', (req, res) => {
                             const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                             return res.status(400).json(token);
                         }
-                        else {
+                        else 
                             return res.status(500).json(err);
-                        }
                     })
                 });
             }
-            else {
-                console.log("esisteeee");
+            else 
                 return res.status(400).json({ message: "Email Already Exist. " });
-            }
         }
     })
 })
 
+// login users, return token
 router.post('/login', (req, res) => {
     let users = req.body;
     // email lower case
     users.email = users.email.toLowerCase();
-    query = "select id, email, password,admin from users where email=?"
+    query = "select id, email, password, admin from users where email=?"
     connection.query(query, [users.email], (err, results) => {
         if (err)
             return res.status(500).json(err);
@@ -69,7 +75,7 @@ router.post('/login', (req, res) => {
     })
 })
 
-// get all the users, only admin
+// get all the users, need a token from admin
 router.get('/getall', auth.auth, check.checkadmin, (req, res) => {
     query = "select * from users"
     connection.query(query, (err, results) => {
