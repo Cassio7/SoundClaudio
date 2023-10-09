@@ -8,7 +8,7 @@ require('dotenv').config();
 router.post('/signup', (req, res) => {
     let users = req.body;
     users.email = users.email.toLowerCase(); 
-    query = "select id,email from users where email=?"
+    query = "select email from users where email=?"
     connection.query(query, [users.email], (err, results) => {
         if (err) {
             return res.status(500).json(err);
@@ -20,7 +20,8 @@ router.post('/signup', (req, res) => {
                     query = "insert into users(name, email, password ,admin) values(?,?,?,0)";
                     connection.query(query, [users.name, users.email, hash], (err, results) => {
                         if (!err) {
-                            const token = jwt.sign({user : users.id}, process.env.TOKEN_KEY,{ expiresIn: '1800s' });
+                            const response = {email: users.email, admin: 0}
+                            const token = jwt.sign(response, process.env.TOKEN_KEY,{ expiresIn: '2h' });
                             return res.status(400).json(token);
                         }
                         else {
@@ -41,7 +42,7 @@ router.post('/login', (req, res) => {
     let users = req.body;
     // email lower case
     users.email = users.email.toLowerCase(); 
-    query = "select id, email, password from users where email=?"
+    query = "select id, email, password,admin from users where email=?"
     connection.query(query, [users.email], (err, results) => {
         if (err) {
             return res.status(500).json(err);
@@ -52,7 +53,8 @@ router.post('/login', (req, res) => {
                 bcrypt.compare(users.password, results[0].password, function (err, ress) {
                     // if res == true, password matched
                     if (ress == true){
-                        const token = jwt.sign({user : users.id}, process.env.TOKEN_KEY,{ expiresIn: '1800s' });
+                        const response = {email: results[0].email, admin: results[0].admin}
+                        const token = jwt.sign(response, process.env.TOKEN_KEY,{ expiresIn: '2h' });
                         return res.status(400).json(token);
                     }
                     else{
