@@ -70,7 +70,7 @@ router.post('/login', (req, res) => {
 })
 
 // get all the users, only admin
-router.get('/getall', auth.auth, (req, res) => {
+router.get('/getall', auth.auth, check.checkadmin, (req, res) => {
     query = "select * from users"
     connection.query(query, (err, results) => {
         if (err)
