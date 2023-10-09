@@ -10,7 +10,7 @@ const check = require('../services/checkadmin');
 
 router.post('/signup', (req, res) => {
     let users = req.body;
-    users.email = users.email.toLowerCase(); 
+    users.email = users.email.toLowerCase();
     query = "select email from users where email=?"
     connection.query(query, [users.email], (err, results) => {
         if (err) {
@@ -23,8 +23,8 @@ router.post('/signup', (req, res) => {
                     query = "insert into users(name, email, password ,admin) values(?,?,?,0)";
                     connection.query(query, [users.name, users.email, hash], (err, results) => {
                         if (!err) {
-                            const response = {email: users.email, admin: 0}
-                            const token = jwt.sign(response, process.env.TOKEN_KEY,{ expiresIn: '2h' });
+                            const response = { email: users.email, admin: 0 }
+                            const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                             return res.status(400).json(token);
                         }
                         else {
@@ -44,38 +44,38 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req, res) => {
     let users = req.body;
     // email lower case
-    users.email = users.email.toLowerCase(); 
+    users.email = users.email.toLowerCase();
     query = "select id, email, password,admin from users where email=?"
     connection.query(query, [users.email], (err, results) => {
-        if (err) 
+        if (err)
             return res.status(500).json(err);
         else {
             if (results.length > 0) {
                 // Load hash from the db, which was preivously stored 
                 bcrypt.compare(users.password, results[0].password, function (err, ress) {
                     // if res == true, password matched
-                    if (ress == true){
-                        const response = {email: results[0].email, admin: results[0].admin}
-                        const token = jwt.sign(response, process.env.TOKEN_KEY,{ expiresIn: '2h' });
+                    if (ress == true) {
+                        const response = { email: results[0].email, admin: results[0].admin }
+                        const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                         return res.status(400).json(token);
                     }
                     else
                         return res.status(400).json({ message: "Password do not match" });
                 });
             }
-            else 
+            else
                 return res.status(400).json({ message: "This Email do not exist" });
         }
     })
 })
 
 // get all the users
-router.get('/getall',auth.auth,(req,res) => {
+router.get('/getall', auth.auth, (req, res) => {
     query = "select * from users"
-    connection.query(query, (err,results) =>{
-        if (err) 
+    connection.query(query, (err, results) => {
+        if (err)
             return res.status(500).json(err);
-        else{
+        else {
             if (results.length > 0) {
                 return res.status(400).json(results);
             }
