@@ -20,17 +20,22 @@ router.post('/signup', (req, res) => {
     users.email = users.email.toLowerCase();
     // query for check email already exists, ? wait a input 
     query = "select email from users where email=?"
-    // send the query and replace
+    // send the query and replace with users.email send from the body
     connection.query(query, [users.email], (err, results) => {
-        if (err) 
+        if (err) // error query
             return res.status(500).json(err);
-        else {
+        else { 
+            // if the query has content we can procede
             if (results.length <= 0) {
+                // the cost factor controls how much time is needed to calculate a single BCrypt hash
                 const saltRounds = 10;
+                // used to securely hash and salt a password and return to hash
                 bcrypt.hash(users.password, saltRounds).then(function (hash) {
-                    query = "insert into users(name, email, password ,admin) values(?,?,?,0)";
+                    // insert new user to the DB
+                    query = "insert into users(name, email, password , admin) values(?,?,?,0)";
                     connection.query(query, [users.name, users.email, hash], (err, results) => {
                         if (!err) {
+                            // return JWT token for auth
                             const response = { email: users.email, admin: 0 }
                             const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                             return res.status(400).json(token);
