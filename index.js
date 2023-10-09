@@ -1,5 +1,8 @@
+
 var cors = require('cors');
+
 const express = require('express');
+
 const connection = require('./connection');
 const usersRoute = require('./routes/users');
 const app = express();

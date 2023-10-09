@@ -1,6 +1,8 @@
+// loads modules
 const mysql = require('mysql');
 require('dotenv').config();
 
+// get the info from the env file and save them
 var connection = mysql.createConnection({
     port: process.env.DB_PORT,
     host: process.env.DB_HOST,
@@ -9,6 +11,7 @@ var connection = mysql.createConnection({
     database: process.env.DB_NAME
 })
 
+// check connections error with DB
 connection.connect((err) =>{
     if (!err) {
         console.log("Connected");
@@ -18,4 +21,5 @@ connection.connect((err) =>{
     }
 })
 
+// export
 module.exports = connection;
