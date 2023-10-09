@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken")
 require('dotenv').config();
 
+const auth = require('../services/auth');
+const check = require('../services/checkadmin');
+
 router.post('/signup', (req, res) => {
     let users = req.body;
     users.email = users.email.toLowerCase(); 
@@ -66,14 +69,15 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get('/getall',(req,res) => {
+// get all the users
+router.get('/getall',auth.auth,(req,res) => {
     query = "select * from users"
     connection.query(query, (err,results) =>{
         if (err) 
             return res.status(500).json(err);
         else{
             if (results.length > 0) {
-                return res.status(400).json(results[0]);
+                return res.status(400).json(results);
             }
             else
                 return res.status(400).json({ message: "No users found" });
