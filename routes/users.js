@@ -44,9 +44,8 @@ router.post('/login', (req, res) => {
     users.email = users.email.toLowerCase(); 
     query = "select id, email, password,admin from users where email=?"
     connection.query(query, [users.email], (err, results) => {
-        if (err) {
+        if (err) 
             return res.status(500).json(err);
-        }
         else {
             if (results.length > 0) {
                 // Load hash from the db, which was preivously stored 
@@ -57,14 +56,27 @@ router.post('/login', (req, res) => {
                         const token = jwt.sign(response, process.env.TOKEN_KEY,{ expiresIn: '2h' });
                         return res.status(400).json(token);
                     }
-                    else{
+                    else
                         return res.status(400).json({ message: "Password do not match" });
-                    }
                 });
             }
-            else {
+            else 
                 return res.status(400).json({ message: "This Email do not exist" });
+        }
+    })
+})
+
+router.get('/getall',(req,res) => {
+    query = "select * from users"
+    connection.query(query, (err,results) =>{
+        if (err) 
+            return res.status(500).json(err);
+        else{
+            if (results.length > 0) {
+                return res.status(400).json(results[0]);
             }
+            else
+                return res.status(400).json({ message: "No users found" });
         }
     })
 })
