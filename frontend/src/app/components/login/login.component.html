@@ -8,16 +8,16 @@
               <h3 class="mb-5">Login</h3>
 
               <div class="form-outline mb-4">
-                <span style="color: red;" *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched">
+                <span class="errcolor" *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched">
                   Incorrect format</span>
                 <input type="email" class="form-control form-control-lg" formControlName="email" />
                 <label class="form-label">Email</label>
               </div>
 
               <div class="form-outline mb-4">
-                <span style="color: red;"
+                <span class="errcolor"
                   *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
-                  Incorrect, min of 7 value</span>
+                  Must be 7-20 characters with atleast 1 uppercase letter, 1 number, 1 special</span>
                 <input type="password" class="form-control form-control-lg" formControlName="password" />
                 <label class="form-label">Password</label>
               </div>

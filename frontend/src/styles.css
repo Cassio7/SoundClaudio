@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #f2f2f2;
+    font-family: Inter;
+}
+
 #button1{
     background-color: #f50;
     color: white;
+}
+.errcolor{
+    color:#c30101 ;
 }
