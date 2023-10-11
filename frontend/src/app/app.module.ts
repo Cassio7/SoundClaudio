@@ -17,6 +17,8 @@ import { CaricaComponent } from './components/carica/carica.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DiscroverComponent } from './components/discrover/discrover.component';
 
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { DiscroverComponent } from './components/discrover/discrover.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -68,14 +68,21 @@ router.post('/login', (req, res) => {
                     if (ress == true) {
                         const response = { email: results[0].email, admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
+                        console.log("Worka")
                         return res.status(400).json(token);
                     }
-                    else
+                    else{
+                        console.log("pass non presa");
                         return res.status(400).json({ message: "Password do not match" });
+                    }
+                        
                 });
             }
-            else
+            else{
+                console.log("email non trovata");
                 return res.status(400).json({ message: "This Email do not exist" });
+            }
+                
         }
     })
 })

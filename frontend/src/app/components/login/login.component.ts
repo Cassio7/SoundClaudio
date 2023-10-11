@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { response } from 'express';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  //var for all the input from the form, 
-  //FormGroup Tracks the value and validity state 
+  // inizialize userServ for api
+  constructor(private userServices: UserService,){}
+  
+  // var for all the input from the form, 
+  // FormGroup Tracks the value and validity state 
   loginForm!: FormGroup;
-  //function called after the creation of the project
 
+  // function called after the creation of the project
   ngOnInit(): void {
     //initialize with a function
     this.loginForm = this.createFormGroup();
@@ -27,10 +31,16 @@ export class LoginComponent implements OnInit {
   }
   //login function, starts when press button
   login(): void {
-    if (this.loginForm.valid)
-      console.log(this.loginForm.value);
-    else {
-      window.location.reload();
+    if (this.loginForm.valid){
+      console.log(this.loginForm.value)
+      this.userServices.login(this.loginForm.value).subscribe((response:any)=>{
+      console.log(response)
+      },(error) =>{
+        console.log("ERRORERERERERE")
+        console.log(error)
+      })
     }
+    else
+      console.log("not working")
   }
 }
