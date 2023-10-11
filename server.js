@@ -10,3 +10,4 @@ const app = require('./index');
 // create the connection
 const server = http.createServer(app);
 server.listen(process.env.PORT);
+console.log("server listen at "+process.env.PORT)
