@@ -43,9 +43,9 @@ create table comments(
     FOREIGN KEY (id_user) REFERENCES users(id),
     FOREIGN KEY (id_song) REFERENCES songs(id)
 );
--- The admin and cassio passwords are "password" but with hash
-insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.com','$2b$10$FRf91ll8eyB3hU3h22C68ukze6Ff60MZMAlivv6HDVmwWZgta2bU6','1');
-insert into users(name,email,password,admin) value('Cassio','cassio@gmail.com','$2b$10$FRf91ll8eyB3hU3h22C68ukze6Ff60MZMAlivv6HDVmwWZgta2bU6','0');
+-- The admin and cassio passwords are "Password1*" but with hash
+insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','1');
+insert into users(name,email,password,admin) value('Cassio','cassio@gmail.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','0');
 
 
 insert into songs(name,artist_name,durata,mp3) value('Working Out','JID','3.46','D:\\Angular\\soundclaudio\\mp3\\Workin_Out.mp3');
