@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,10 @@ export class SignupComponent implements OnInit {
   //FormGroup Tracks the value and validity state 
   signupForm!: FormGroup;
   flag = 0
+
+  // inizialize userServ for api
+  constructor(private userServices: UserService,){}
+
   //function called after the creation of the project
   ngOnInit(): void {
     //initialize with a function
@@ -31,8 +36,15 @@ export class SignupComponent implements OnInit {
   }
   //signup function, starts when press button
   signup(): void {
-    if (this.signupForm.valid && this.signupForm.value["password"] == this.signupForm.value["password_verify"])
-      console.log(this.signupForm.value);
+    if (this.signupForm.valid && this.signupForm.value["password"] == this.signupForm.value["password_verify"]){
+      this.userServices.signup(this.signupForm.value).subscribe((response:any)=>{
+        console.log(response)
+        },(error) =>{
+          console.log("ERRORERERERERE")
+          console.log(error)
+        })
+    }
+      
     else {
       //changing when psw not matching
       this.flag = 1
