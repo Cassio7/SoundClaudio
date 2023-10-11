@@ -38,15 +38,22 @@ router.post('/signup', (req, res) => {
                             // return JWT token for auth
                             const response = { email: users.email, admin: 0 }
                             const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
-                            return res.status(400).json(token);
+                            console.log("registrato")
+                            return res.status(200).json(token);
                         }
-                        else 
+                        else{
+                            console.log("err random")
                             return res.status(500).json(err);
+                        }
+                            
                     })
                 });
             }
-            else 
+            else{
+                console.log("email esiste no registrazione")
                 return res.status(400).json({ message: "Email Already Exist. " });
+            }
+                
         }
     })
 })
@@ -68,7 +75,7 @@ router.post('/login', (req, res) => {
                     if (ress == true) {
                         const response = { email: results[0].email, admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
-                        console.log("Worka")
+                        console.log("Worka login")
                         return res.status(200).json(token);
                     }
                     else{
