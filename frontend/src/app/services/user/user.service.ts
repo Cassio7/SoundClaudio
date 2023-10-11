@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment'
 })
 export class UserService {
 
+  // get the url of the backend
   url = environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
 

@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
                         const response = { email: results[0].email, admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                         console.log("Worka")
-                        return res.status(400).json(token);
+                        return res.status(200).json(token);
                     }
                     else{
                         console.log("pass non presa");
