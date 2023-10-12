@@ -11,20 +11,27 @@ create table users(
     UNIQUE (email)
 );
 
+create table artists(
+    id int primary key AUTO_INCREMENT,
+    name varchar(250)
+);
+
 create table albums(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
-    artist_name varchar(250)
+    id_artist int,
+    FOREIGN KEY (id_artist) REFERENCES artists(id)
 );
 
 create table songs(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
-    artist_name varchar(250),
+    id_artist int,
     id_album int,
     durata float,
     mp3 varchar(250),
-    FOREIGN KEY (id_album) REFERENCES albums(id)
+    FOREIGN KEY (id_album) REFERENCES albums(id),
+    FOREIGN KEY (id_artist) REFERENCES artists(id)
 );
 
 create table libraries(
@@ -47,5 +54,17 @@ create table comments(
 insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','1');
 insert into users(name,email,password,admin) value('Cassio','cassio@gmail.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','0');
 
+-- Artists
 
-insert into songs(name,artist_name,durata,mp3) value('Working Out','JID','3.46','D:\\Angular\\soundclaudio\\mp3\\Workin_Out.mp3');
+insert into artists(name) value('JID');
+insert into artists(name) value('Travis Scott');
+
+-- Albums
+insert into albums(name, id_artist) value('DiCaprio2', 1);
+insert into albums(name, id_artist) value('Utopia', 2);
+
+-- Songs DiCaprio
+insert into songs(name,id_artist,id_album,durata,mp3) value('Working Out',1,1,'3.46','\\mp3\\Workin_Out.mp3');
+
+-- Songs Utopia
+insert into songs(name,id_artist,id_album,durata,mp3) value('HYAENA',2,2,'3.42','\\mp3\\Workin_Out.mp3');
