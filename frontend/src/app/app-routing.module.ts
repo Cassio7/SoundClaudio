@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LibreriaComponent } from './components/libreria/libreria.component';
 import { CaricaComponent } from './components/carica/carica.component';
 import { DiscroverComponent } from './components/discrover/discrover.component';
+import { AlbumComponent } from './components/album/album.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "library", component: LibreriaComponent},
   { path: "discovery", component: DiscroverComponent},
   { path: "carica", component: CaricaComponent},
+  { path: "album", component: AlbumComponent},
   { path: "**", redirectTo:""},
 ];
 

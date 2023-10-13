@@ -17,7 +17,8 @@ import { CaricaComponent } from './components/carica/carica.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DiscroverComponent } from './components/discrover/discrover.component';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { AlbumComponent } from './components/album/album.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http'
     LibreriaComponent,
     CaricaComponent,
     FooterComponent,
-    DiscroverComponent
+    DiscroverComponent,
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
