@@ -67,4 +67,24 @@ insert into albums(name, id_artist) value('Utopia', 2);
 insert into songs(name,id_artist,id_album,durata,mp3) value('Working Out',1,1,'3.46','\\mp3\\Workin_Out.mp3');
 
 -- Songs Utopia
-insert into songs(name,id_artist,id_album,durata,mp3) value('HYAENA',2,2,'3.42','\\mp3\\Workin_Out.mp3');
+insert into songs(name,id_artist,id_album,durata,mp3) value('HYAENA',2,2,'3.42','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('THANK GOD',2,2,'3.04','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('MODERN JAM',2,2,'4.15','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('MY EYES',2,2,'4.11','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('GODS COUNTRY',2,2,'2.07','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('SIRENS',2,2,'3.24','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('MELTDOWN',2,2,'4.06','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('FE!N',2,2,'3.11','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('DELRESTO',2,2,'4.34','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('I KNOW ?',2,2,'3.31','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('TOPIA TWINS',2,2,'3.43','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('CIRCUS MAXIMUX',2,2,'4.18','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('PARASAIL',2,2,'2.34','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('SKITZO',2,2,'6.06','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('LOST FOREVER',2,2,'2.43','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('LOOOVE',2,2,'3.46','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('K-POP',2,2,'3.05','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('TELEKINESIS',2,2,'5.54','');
+insert into songs(name,id_artist,id_album,durata,mp3) value('TIL FURTHER NOTICE',2,2,'5.14','');
+
+
