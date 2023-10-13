@@ -61,8 +61,8 @@ insert into artists(name) value('JID');
 insert into artists(name) value('Travis Scott');
 
 -- Albums
-insert into albums(name, img,id_artist) value('DiCaprio2','', 1);
-insert into albums(name, img,id_artist) value('Utopia','', 2);
+insert into albums(name, img ,id_artist) value('DiCaprio2','', 1);
+insert into albums(name, img ,id_artist) value('Utopia','../assets/img/utopia.jpg', 2);
 
 -- Songs DiCaprio
 insert into songs(name,id_artist,id_album,durata,mp3) value('Working Out',1,1,'3.46','../assets/mp3/Working_Out.mp3');
