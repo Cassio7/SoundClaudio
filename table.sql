@@ -1,6 +1,6 @@
 --Query for database
 
-DROP TABLE users, albums, songs, libraries, comments;
+DROP TABLE users, albums, songs, libraries, comments, artists;
 
 create table users(
     id int primary key AUTO_INCREMENT,
@@ -86,5 +86,3 @@ insert into songs(name,id_artist,id_album,durata,mp3) value('LOOOVE',2,2,'3.46',
 insert into songs(name,id_artist,id_album,durata,mp3) value('K-POP',2,2,'3.05','../assets/mp3/Utopia/K-POP.mp3');
 insert into songs(name,id_artist,id_album,durata,mp3) value('TELEKINESIS',2,2,'5.54','../assets/mp3/Utopia/TELEKINESIS.mp3');
 insert into songs(name,id_artist,id_album,durata,mp3) value('TIL FURTHER NOTICE',2,2,'5.14','../assets/mp3/Utopia/TIL.mp3');
-
-
