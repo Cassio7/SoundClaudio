@@ -1,4 +1,4 @@
---Query for database
+-- Query for database
 
 DROP TABLE users, albums, songs, libraries, comments, artists;
 
@@ -113,7 +113,7 @@ insert into songs(name,id_artist,id_album,mp3) value('K-POP',2,2,'../assets/mp3/
 insert into songs(name,id_artist,id_album,mp3) value('TELEKINESIS',2,2,'../assets/mp3/Utopia/TELEKINESIS.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('TIL FURTHER NOTICE',2,2,'../assets/mp3/Utopia/TIL.mp3');
 
---SongsSOS
+-- SongsSOS
 
 insert into songs(name,id_artist,id_album,mp3) value('SOS',4,4,'../assets/mp3/SOS/SOS.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Kill Bill',4,4,'../assets/mp3/SOS/Kill.mp3');
@@ -138,3 +138,6 @@ insert into songs(name,id_artist,id_album,mp3) value('Open Arms',4,4,'../assets/
 insert into songs(name,id_artist,id_album,mp3) value('I Hate U',4,4,'../assets/mp3/SOS/Hate.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Good Days',4,4,'../assets/mp3/SOS/Good.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Forgiveless',4,4,'../assets/mp3/SOS/Forgiveless.mp3');
+
+-- SongsPersona
+
