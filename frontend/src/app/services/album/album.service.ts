@@ -16,4 +16,10 @@ export class AlbumService {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }
+
+  getalbum(id: Number) {
+    return this.httpClient.post(this.url + "/music/" + id, {
+      headers: new HttpHeaders().set("Content-Type", "application/json")
+    })
+  }
 }

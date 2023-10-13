@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "library", component: LibreriaComponent},
   { path: "discovery", component: DiscroverComponent},
   { path: "carica", component: CaricaComponent},
-  { path: "album", component: AlbumComponent},
+  { path: "album/:id", component: AlbumComponent},
   { path: "**", redirectTo:""},
 ];
 

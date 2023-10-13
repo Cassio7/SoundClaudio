@@ -9,14 +9,16 @@ import { AlbumService } from 'src/app/services/album/album.service';
 export class DiscroverComponent implements OnInit {
 
   albums: any;
-  // inizialize userServ for api
+  // inizialize albumServ for api
   constructor(private albumService: AlbumService,
   ) { }
 
+  // Start the function with the component
   ngOnInit(): void {
     this.getallalbums();
   }
 
+  // Get all the album from the backend
   getallalbums(): void {
     this.albumService.getallalbums().subscribe({
       next: (response) => {
