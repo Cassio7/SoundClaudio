@@ -1,7 +1,17 @@
-<div class="row card-group">
-    <div class="col-4" >
-        <div class="card">
-            
+<h2 style="margin-top: 10%;"> <strong>Discover albums and songs</strong> </h2>
+<hr>
+<div class="row card-group" style="margin-top: 5%;">
+
+<!-- Fetch all the albums  -->
+    <div class="col-4" *ngFor="let album of albums">
+        <div class="card w-50 border-0" style="background-color: #f2f2f2;">
+            <a routerLink="/discovery">
+                <img class="card-img-top" src="{{album.img}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title fixleft">{{album.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted fixleft">{{album.nameart}}</h6>
+                </div>
+            </a>
         </div>
-    </div>
+    </div>  
 </div>

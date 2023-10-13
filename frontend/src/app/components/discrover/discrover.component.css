@@ -1,0 +1,8 @@
+a{
+    text-decoration:none; 
+    color: inherit;
+}
+.fixleft{
+    margin-left: -20px;
+    margin-top: -10px;
+}

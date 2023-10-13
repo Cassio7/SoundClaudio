@@ -3,7 +3,7 @@ const connection = require('../connection');
 const router = express.Router();
 
 router.get('/getallalbums', (req, res) => {
-    query = "select albums.id, albums.name, artists.name as nameart from albums inner join artists on albums.id_artist = artists.id;"
+    query = "select albums.id, albums.img ,albums.name, artists.name as nameart from albums inner join artists on albums.id_artist = artists.id;"
     connection.query(query, (err, results) => {
         if (err)
             return res.status(400).json(err);
