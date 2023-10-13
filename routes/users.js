@@ -60,7 +60,7 @@ router.post('/signup', (req, res) => {
 
 // login users, return token
 router.post('/login', (req, res) => {
-    let users = req.body;
+    const users = req.body;
     // email lower case
     users.email = users.email.toLowerCase();
     query = "select id, email, password, admin from users where email=?"
