@@ -11,6 +11,9 @@ export class AlbumComponent implements OnInit{
 
   album: any;
   id: any;
+  name!: string;
+  art!: string;
+  img!: string;
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private albumService: AlbumService,
@@ -33,6 +36,9 @@ export class AlbumComponent implements OnInit{
       next: (response) => {
         console.log(response)
         this.album = response
+        this.name = this.album[1].name;
+        this.art = this.album[1].nameart;
+        this.img = this.album[1].img;
       }
     })
   }

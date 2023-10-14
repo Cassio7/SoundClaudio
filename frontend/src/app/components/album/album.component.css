@@ -1,0 +1,17 @@
+.font{
+    color: white;
+    margin-left: 28px;
+}
+.uptop{
+    margin-top: -1%; 
+    background-color: #c6ac8f;
+}
+.circle{
+    margin-left: 10px;
+    font-size: 121px;
+}
+.fixcircle{
+    color: white;
+    margin-left: -100px;
+    font-size: 70%;
+}

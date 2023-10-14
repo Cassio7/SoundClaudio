@@ -1,17 +1,19 @@
-
-<div class="row justify-content-between" style="margin-top: -1%; background-color: purple;">
-    <div class="col-6" style="margin-top: 4%;">
-        <h3 style="color: white;">{{album[0].name}}</h3>
-        <h4 style="color: white;">{{album[0].nameart}}</h4>
-    </div>
-    <div class="col-6">
-      <img style="float: right;" src="{{album[0].img}}" alt="img" width="300" height="300">
-    </div>
+<div class="row justify-content-between uptop">
+  <div class="col-6" style="margin-top: 4%;">
+    <h2 class="font">{{name}}</h2>
+    <h3 class="font">{{art}}</h3>
+    <i class="bi bi-circle-fill circle">
+      <span class="fixcircle">{{album.length}}</span>
+    </i>
   </div>
+  <div class="col-6">
+    <img style="float: right;" src="{{img}}" alt="img" width="300" height="300">
+  </div>
+</div>
 
 <hr>
 <div class="list-group" style="background-color: #f2f2f2;">
-    <a class="list-group-item list-group-item-action" *ngFor="let song of album">
-      {{song.namesong}}
-    </a>
-  </div>
+  <li class="list-group-item" *ngFor="let song of album" id="{{song.id}}">
+    {{song.namesong}}
+  </li>
+</div>
