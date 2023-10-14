@@ -62,7 +62,7 @@ insert into artists(name) value('JID');
 insert into artists(name) value('Travis Scott');
 insert into artists(name) value('More Artists');
 insert into artists(name) value('SZA');
-insert into artists(name) value('Marracash');
+insert into artists(name) value('Mac Miller');
 
 -- Albums
 
@@ -70,7 +70,7 @@ insert into albums(name, img ,id_artist) value('The Forever Story','../assets/im
 insert into albums(name, img ,id_artist) value('Utopia','../assets/img/utopia.jpg', 2);
 insert into albums(name, img ,id_artist) value('Users songs','../assets/img/user.png', 3);
 insert into albums(name, img ,id_artist) value('SOS','../assets/img/sos.png', 4);
-insert into albums(name, img ,id_artist) value('Persona','../assets/img/persona.png', 5);
+insert into albums(name, img ,id_artist) value('The Divine Feminine','../assets/img/divine.jpg', 5);
 
 -- SongsForever
 
@@ -83,9 +83,9 @@ insert into songs(name,id_artist,id_album,mp3) value('Surround Sound',1,1,'../as
 insert into songs(name,id_artist,id_album,mp3) value('Kody Blu 31',1,1,'../assets/mp3/Forever/Kody.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Bruddanem',1,1,'../assets/mp3/Forever/Bruddanem.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Sistanem',1,1,'../assets/mp3/Forever/Sistanem.mp3');
-insert into songs(name,id_artist,id_album,mp3) value('Cant Make U Change',1,1,'111','../assets/mp3/Forever/Change.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Cant Make U Change',1,1,'../assets/mp3/Forever/Change.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Stars',1,1,'../assets/mp3/Forever/Stars.mp3');
-insert into songs(name,id_artist,id_album,mp3) value('Just In Time',1,1,'111','../assets/mp3/Forever/Just.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Just In Time',1,1,'../assets/mp3/Forever/Just.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Money',1,1,'../assets/mp3/Forever/Money.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Better Days',1,1,'../assets/mp3/Forever/Better.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Lauder Too',1,1,'../assets/mp3/Forever/Lauder.mp3');
@@ -139,5 +139,15 @@ insert into songs(name,id_artist,id_album,mp3) value('I Hate U',4,4,'../assets/m
 insert into songs(name,id_artist,id_album,mp3) value('Good Days',4,4,'../assets/mp3/SOS/Good.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Forgiveless',4,4,'../assets/mp3/SOS/Forgiveless.mp3');
 
--- SongsPersona
+-- SongsDivine
 
+insert into songs(name,id_artist,id_album,mp3) value('Congratulation',5,5,'../assets/mp3/Divine/Congratulation.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Dang!',5,5,'../assets/mp3/Divine/Dang!.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Stay',5,5,'../assets/mp3/Divine/Stay.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Skin',5,5,'../assets/mp3/Divine/Skin.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Cinderella',5,5,'../assets/mp3/Divine/Cinderella.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Planet God Damn',5,5,'../assets/mp3/Divine/Planet.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Soulmate',5,5,'../assets/mp3/Divine/Soulmate.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('We',5,5,'../assets/mp3/Divine/We.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('My Favourite Part',5,5,'../assets/mp3/Divine/My.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('God Is Fair, Sexy Nasty',5,5,'../assets/mp3/Divine/God.mp3');
