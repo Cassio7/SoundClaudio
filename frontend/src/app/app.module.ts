@@ -18,7 +18,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DiscroverComponent } from './components/discrover/discrover.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { AlbumComponent } from './components/album/album.component'
+import { AlbumComponent } from './components/album/album.component';
+import { SongComponent } from './components/song/song.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AlbumComponent } from './components/album/album.component'
     CaricaComponent,
     FooterComponent,
     DiscroverComponent,
-    AlbumComponent
+    AlbumComponent,
+    SongComponent
   ],
   imports: [
     BrowserModule,

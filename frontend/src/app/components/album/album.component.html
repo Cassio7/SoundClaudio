@@ -1,19 +1,27 @@
+<!-- for the icons -->
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 <div class="row justify-content-between uptop">
   <div class="col-6" style="margin-top: 4%;">
-    <h2 class="font">{{name}}</h2>
-    <h3 class="font">{{art}}</h3>
+    <h1 class="font">{{name}}</h1>
+    <h2 class="font">{{art}}</h2>
     <i class="bi bi-circle-fill circle">
       <span class="fixcircle">{{album.length}}</span>
     </i>
   </div>
   <div class="col-6">
-    <img style="float: right;" src="{{img}}" alt="img" width="300" height="300">
+    <img style="float: right; margin-top: 3%;" src="{{img}}" alt="img" width="300" height="300">
   </div>
 </div>
 
 <hr>
-<div class="list-group" style="background-color: #f2f2f2;">
-  <li class="list-group-item" *ngFor="let song of album" id="{{song.id}}">
+<div class="list-group">
+  <a class="list-group-item list-group-item-action" id="{{song.id}}" *ngFor="let song of album">
     {{song.namesong}}
-  </li>
+    <button class="unpress" style="float: right;">
+      <span class="material-symbols-outlined">
+        favorite
+      </span></button>
+  </a>
 </div>

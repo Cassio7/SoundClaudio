@@ -34,4 +34,21 @@ router.post('/:id', (req, res) => {
         }
     })
 })
+
+router.post('/song/:id', (req,res) =>{
+    const song = req.params.id;
+    query = "select * from songs where songs.id = ?"
+    connection.query(query, [song], (err, results) => {
+        if (err)
+            return res.status(400).json(err);
+        else {
+            if (results.length > 0) {
+                return res.status(200).json(results);
+            }
+            else
+                return res.status(400).json({ message: "Nothing found" });
+        }
+    })
+} )
+
 module.exports = router;

@@ -8,6 +8,7 @@ import { LibreriaComponent } from './components/libreria/libreria.component';
 import { CaricaComponent } from './components/carica/carica.component';
 import { DiscroverComponent } from './components/discrover/discrover.component';
 import { AlbumComponent } from './components/album/album.component';
+import { SongComponent } from './components/song/song.component'; 
 
 const routes: Routes = [
   { path: "", component: HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: "discovery", component: DiscroverComponent},
   { path: "carica", component: CaricaComponent},
   { path: "album/:id", component: AlbumComponent},
+  { path: "song/:id", component: SongComponent},
   { path: "**", redirectTo:""},
 ];
 

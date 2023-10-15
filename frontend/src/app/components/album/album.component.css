@@ -12,6 +12,12 @@
 }
 .fixcircle{
     color: white;
-    margin-left: -100px;
+    margin-left: -110px;
     font-size: 70%;
+}
+.unpress {
+    border: none;
+    padding: 0;
+    background: none;
+    margin-right: 18px;
 }
