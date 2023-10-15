@@ -30,7 +30,6 @@ export class SongComponent implements OnInit {
   getinfo(id:any): void{
     this.songService.getinfo(id).subscribe({
       next: (response) => {
-        console.log(response)
         this.song = response;
       }
     })
