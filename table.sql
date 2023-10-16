@@ -151,3 +151,6 @@ insert into songs(name,id_artist,id_album,mp3) value('Soulmate',5,5,'../assets/m
 insert into songs(name,id_artist,id_album,mp3) value('We',5,5,'../assets/mp3/Divine/We.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('My Favourite Part',5,5,'../assets/mp3/Divine/My.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('God Is Fair, Sexy Nasty',5,5,'../assets/mp3/Divine/God.mp3');
+
+-- Comments test
+insert into comments(id_user, id_song, comment) value(2,1,"Hitttttt");
