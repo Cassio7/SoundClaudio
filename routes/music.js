@@ -54,34 +54,51 @@ router.post('/:id', (req, res) => {
     })
 })
 
-// Fetch song, comments, and user info by song ID
+// Get all the info for song page
 router.post('/song/:id', (req, res) => {
     const song = req.params.id;
+    // Get info for a song
     query = `  
         SELECT 
-            comments.id, 
-            comments.comment,
-            comments.id_user,
             songs.id, 
             songs.name AS namesong, 
             albums.img, 
             albums.name, 
             artists.name AS nameart, 
-            songs.mp3,
-            users.id,
-            users.name as nameuser
+            songs.mp3
         FROM albums
         INNER JOIN artists ON albums.id_artist = artists.id
         INNER JOIN songs ON albums.id = songs.id_album
-        INNER JOIN comments ON songs.id = comments.id_song
-        INNER JOIN users ON comments.id_user = users.id
-        WHERE songs.id = ?;`
+        WHERE songs.id = ?;`;
     connection.query(query, [song], (err, results) => {
         if (err)
             return res.status(400).json(err);
         else {
             if (results.length > 0) {
-                return res.status(200).json(results);
+                // Get all the comments for that tune
+                query = `  
+                SELECT 
+                    comments.id,
+                    comments.comment,
+                    users.name  
+                FROM comments
+                INNER JOIN songs ON comments.id_song = songs.id
+                INNER JOIN users ON users.id = comments.id_user
+                WHERE songs.id = ?;`;
+                connection.query(query, [song], (err, comments) => {
+                    if (err)
+                        return res.status(400).json(err);
+                    else {
+                        if (comments.length > 0) {
+                            // Merge 2 querys
+                            const mix = [...results, ...comments];
+                            return res.status(200).json(mix);
+                        }
+                        // If no comments just the song
+                        else
+                            return res.status(200).json(results);
+                    }
+                })
             }
             else
                 return res.status(400).json({ message: "Nothing found" });
