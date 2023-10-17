@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { isEmpty } from 'rxjs';
 import { AlbumService } from 'src/app/services/album/album.service';
 
 @Component({
@@ -22,7 +23,6 @@ export class DiscroverComponent implements OnInit {
   getallalbums(): void {
     this.albumService.getallalbums().subscribe({
       next: (response) => {
-        console.log(response)
         this.albums = response
       }
     })

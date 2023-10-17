@@ -40,7 +40,6 @@ export class AlbumComponent implements OnInit{
   getalbum(id: any): void {
     this.albumService.getalbum(id).subscribe({
       next: (response) => {
-        console.log(response)
         this.songs = response
         this.album = {
           numsong : this.songs.length,
