@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AlbumService } from 'src/app/services/album/album.service';
 import { ActivatedRoute, Params } from "@angular/router";
 
+// For single info inside the query
+interface Album{
+  numsong: number;
+  name: string;
+  art: string;
+  img: string;
+}
+
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
@@ -9,12 +17,9 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 
 export class AlbumComponent implements OnInit{
-
-  album: any;
+  album : Album = {numsong : 0, name : "", art : "",img : "" }
+  songs: any;
   id: any;
-  name!: string;
-  art!: string;
-  img!: string;
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private albumService: AlbumService,
@@ -36,10 +41,13 @@ export class AlbumComponent implements OnInit{
     this.albumService.getalbum(id).subscribe({
       next: (response) => {
         console.log(response)
-        this.album = response
-        this.name = this.album[1].name;
-        this.art = this.album[1].nameart;
-        this.img = this.album[1].img;
+        this.songs = response
+        this.album = {
+          numsong : this.songs.length,
+          name : this.songs[1].name,
+          art : this.songs[1].nameart,
+          img : this.songs[1].img,
+        }
       }
     })
   }

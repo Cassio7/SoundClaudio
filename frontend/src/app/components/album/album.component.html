@@ -4,20 +4,20 @@
 
 <div class="row justify-content-between uptop">
   <div class="col-6" style="margin-top: 4%;">
-    <h1 class="font">{{name}}</h1>
-    <h2 class="font">{{art}}</h2>
+    <h1 class="font">{{album.name}}</h1>
+    <h2 class="font">{{album.art}}</h2>
     <i class="bi bi-circle-fill circle">
-      <span class="fixcircle">{{album.length}}</span>
+      <span class="fixcircle">{{album.numsong}}</span>
     </i>
   </div>
   <div class="col-6">
-    <img style="float: right; margin-top: 3%;" src="{{img}}" alt="img" width="300" height="300">
+    <img style="float: right; margin-top: 3%;" src="{{album.img}}" alt="img" width="300" height="300">
   </div>
 </div>
 
 <hr>
 <div class="list-group">
-  <a routerLink="/song/{{song.id}}" class="list-group-item list-group-item-action" id="{{song.id}}" *ngFor="let song of album">
+  <a routerLink="/song/{{song.id}}" class="list-group-item list-group-item-action" id="{{song.id}}" *ngFor="let song of songs">
     {{song.namesong}}
     <button class="unpress" style="float: right;">
       <span class="material-symbols-outlined">
