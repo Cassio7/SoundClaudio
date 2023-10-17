@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from 'src/app/services/album/album.service';
-import { ActivatedRoute, Params } from "@angular/router";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 // For single info inside the query
-interface Album{
+interface Album {
   numsong: number;
   name: string;
   art: string;
@@ -16,23 +16,24 @@ interface Album{
   styleUrls: ['./album.component.css']
 })
 
-export class AlbumComponent implements OnInit{
-  album : Album = {numsong : 0, name : "", art : "",img : "" }
+export class AlbumComponent implements OnInit {
+  album: Album = { numsong: 0, name: "", art: "", img: "" }
   songs: any;
   id: any;
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private albumService: AlbumService,
+    private router: Router,
   ) { }
 
   // Start the function with the component
   ngOnInit(): void {
     // Get the right id from URL
-    this.route.params.subscribe( 
-    (params: Params)=>{
-      this.id = +params['id'];
-    }
-  )
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+      }
+    )
     this.getalbum(this.id);
   }
 
@@ -42,10 +43,19 @@ export class AlbumComponent implements OnInit{
       next: (response) => {
         this.songs = response
         this.album = {
-          numsong : this.songs.length,
-          name : this.songs[1].name,
-          art : this.songs[1].nameart,
-          img : this.songs[1].img,
+          numsong: this.songs.length,
+          name: this.songs[1].name,
+          art: this.songs[1].nameart,
+          img: this.songs[1].img,
+        }
+      },
+      error: (error) => {
+        // Handle the error response (e.g., display an error message)
+        if (error.status === 400) {
+          // Handle the specific error with status code 400
+          this.router.navigate(['/error']);
+        } else {
+          // Handle other HTTP errors
         }
       }
     })
