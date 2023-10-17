@@ -9,7 +9,9 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 export class SongComponent implements OnInit {
 
+  mix: any;
   song:any;
+  comments: any;
   id: any;
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
@@ -30,7 +32,19 @@ export class SongComponent implements OnInit {
   getinfo(id:any): void{
     this.songService.getinfo(id).subscribe({
       next: (response) => {
-        this.song = response;
+        // Only song inside the response
+        if (Object.keys(response).length < 2)
+          this.song = response;
+        // Song + comments
+        else{
+          this.mix = response;
+          this.song = this.mix[0];
+          console.log(this.song)
+          for (const i in this.mix){
+            this.comments = this.comments.concat(i)
+          }
+          console.log(this.comments)
+        }
       }
     })
   }
