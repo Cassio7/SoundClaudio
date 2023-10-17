@@ -26,6 +26,7 @@ router.get('/getallalbums', (req, res) => {
         }
     })
 })
+
 // Fetch album, artist, and songs by album ID
 router.post('/:id', (req, res) => {
     const album = req.params.id;
@@ -78,9 +79,9 @@ router.post('/song/:id', (req, res) => {
                 // Get all the comments for that tune
                 query = `  
                 SELECT 
-                    comments.id,
+                    comments.id as commentid,
                     comments.comment,
-                    users.name  
+                    users.name as username
                 FROM comments
                 INNER JOIN songs ON comments.id_song = songs.id
                 INNER JOIN users ON users.id = comments.id_user
