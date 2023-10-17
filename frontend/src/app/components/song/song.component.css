@@ -1,0 +1,25 @@
+.title{
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.font{
+    background-color: #282a36;
+    color: white;
+    margin-left: 28px;
+    display:inline-block; 
+}
+.uptop{
+    margin-top: -1%; 
+    background-color: #c6ac8f;
+}
+.circle{
+    margin-left: 10px;
+    font-size: 121px;
+}
+.unpress {
+    border: none;
+    padding: 0;
+    background: none;
+    margin-right: 18px;
+}

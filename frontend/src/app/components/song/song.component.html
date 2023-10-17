@@ -1,24 +1,43 @@
 <!-- for the icons -->
 <link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <div class="row justify-content-between uptop">
-  <div class="col-6" style="margin-top: 4%;">
-    <h1 class="font">{{song.namesong}}</h1>
-    <h2 class="font">{{song.nameart}}</h2>
-  </div>
-  <div class="col-6">
-    <img style="float: right; margin-top: 3%;" src="{{song.img}}" alt="img" width="300" height="300">
-  </div>
+    <div class="col-6" style="margin-top: 4%;">
+        <h1 class="font">{{song.id}}. {{song.namesong}}</h1> <br>
+        <h2 class="font">{{song.nameart}}</h2> <br>
+        <h3 class="font">Inside the Album: {{song.name}}</h3>
+    </div>
+    <div class="col-6">
+        <img style="float: right; margin-top: 3%;" src="{{song.img}}" alt="img" width="300" height="300">
+    </div>
 </div>
 
-<hr>
-<div class="list-group">
-    <a class="list-group-item list-group-item-action" id="{{song.id}}" *ngFor="let comment of data">
-      {{comment.commentid}}
-      <button class="unpress" style="float: right;">
-        <span class="material-symbols-outlined">
-          favorite
-        </span></button>
-    </a>
-  </div>
+
+<h1 class="title">
+    Comments section
+    <span class="material-symbols-outlined">
+        chat_bubble
+    </span>
+</h1>
+<!-- All comment from the database using *ngFor -->
+<ul class="list-group list-group-flush" id="{{comment.commentid}}" *ngFor="let comment of data">
+    <li class="list-group-item" style="background-color: #f2f2f2;">
+        <h6>{{comment.username}}:</h6>
+        <h5>{{comment.comment}}</h5>
+    </li>
+</ul>
+<ul class="list-group list-group-flush">
+    <h3 class="title">Post your comment about this song</h3>
+    <li class="list-group-item" style="background-color: #f2f2f2;">
+        <form class="form-inline">
+            <div class="form-group mb-2 mr-5">
+                <h5>Username</h5>
+            </div>
+            <div class="form-group mx-sm-3 mb-2" >
+                <textarea class="form-control" placeholder="Comment" cols="32"></textarea>            
+            </div>
+            <button type="submit" id="button1" class="btn mb-2">Post comment</button>
+        </form>
+    </li>
+</ul>

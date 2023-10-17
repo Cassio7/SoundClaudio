@@ -1,6 +1,8 @@
 .font{
+    background-color: #282a36;
     color: white;
     margin-left: 28px;
+    display:inline-block; 
 }
 .uptop{
     margin-top: -1%; 
