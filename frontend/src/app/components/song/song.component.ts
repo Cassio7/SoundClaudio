@@ -2,6 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song/song.service';
 import { ActivatedRoute, Params } from "@angular/router";
 
+// Info of the song
+interface Song{
+  id : number;
+  namesong: string;
+  img: string;
+  name: string;
+  nameart: string;
+  mp3: string;
+}
+
 @Component({
   selector: 'app-song',
   templateUrl: './song.component.html',
@@ -9,10 +19,17 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 export class SongComponent implements OnInit {
 
-  mix: any;
-  song:any;
-  comments: any;
+  data:any;
+  // Inizialize
+  song: Song = {id: 0,       
+    namesong: '',
+    img: '',
+    name: '',
+    nameart: '',
+    mp3: ''
+  }
   id: any;
+
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private songService: SongService,
@@ -29,21 +46,23 @@ export class SongComponent implements OnInit {
     this.getinfo(this.id);
   }
 
+  // Main function to get all the info for the tune
   getinfo(id:any): void{
     this.songService.getinfo(id).subscribe({
       next: (response) => {
-        // Only song inside the response
-        if (Object.keys(response).length < 2)
-          this.song = response;
-        // Song + comments
-        else{
-          this.mix = response;
-          this.song = this.mix[0];
-          console.log(this.song)
-          for (const i in this.mix){
-            this.comments = this.comments.concat(i)
+        // Check is data
+        if (Object.keys(response).length > 0){
+          this.data = response;
+          this.song = {
+            id : this.data[0].id,
+            namesong : this.data[0].namesong,
+            img : this.data[0].img,
+            name : this.data[0].name,
+            nameart : this.data[0].nameart,
+            mp3 : this.data[0].mp3,
           }
-          console.log(this.comments)
+          // Get only the comments for *ngFor
+          this.data.shift();
         }
       }
     })
