@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { isEmpty } from 'rxjs';
 import { AlbumService } from 'src/app/services/album/album.service';
 
 @Component({
