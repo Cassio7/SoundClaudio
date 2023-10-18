@@ -35,6 +35,7 @@ router.post('/signup', (req, res) => {
                     query = "insert into users(name, email, password , admin) values(?,?,?,0)";
                     connection.query(query, [users.name, users.email, hash], (err, results) => {
                         if (!err) {
+
                             // return JWT token for auth
                             const response = { email: users.email, admin: 0 }
                             const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
@@ -73,7 +74,7 @@ router.post('/login', (req, res) => {
                 bcrypt.compare(users.password, results[0].password, function (err, ress) {
                     // if res == true, password matched
                     if (ress == true) {
-                        const response = { email: results[0].email, admin: results[0].admin }
+                        const response = { id: results[0].id, email: results[0].email, admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                         console.log("Worka login")
                         return res.status(200).json(token);
