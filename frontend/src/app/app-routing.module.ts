@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './guard/auth.guard';
 
+// Components 
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,13 +15,14 @@ import { E404Component } from './components/errrors/e404/e404.component';
 import { E400Component } from './components/errrors/e400/e400.component';
 import { E401Component } from './components/errrors/e401/e401.component';
 
+// All the paths with components
 const routes: Routes = [
   { path: "", component: HomeComponent},
   { path: "login", component: LoginComponent},
   { path: "signup", component: SignupComponent},
-  { path: "library", component: LibreriaComponent},
+  { path: "library", component: LibreriaComponent, canActivate: [authGuard]},
   { path: "discovery", component: DiscroverComponent},
-  { path: "carica", component: CaricaComponent},
+  { path: "carica", component: CaricaComponent, canActivate: [authGuard]},
   { path: "album/:id", component: AlbumComponent},
   { path: "song/:id", component: SongComponent},
   { path: "error/404", component: E404Component},
