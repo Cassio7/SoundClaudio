@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,14 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  // Return true if there is a token, else false
   isAuthenticated(): boolean {
     const token = this.getToken();
-    const secretKey = environment.TOKEN_KEY;
-    return token ? true : false;
+    if(token){
+      console.log(this.decode(token))
+      return true;
+    }
+    return false;
   }
 
   private clearToken() {
@@ -34,4 +38,8 @@ export class AuthService {
     this.clearToken();
   }
   
+  // Decode the token to get the informations
+  decode(token: string): object{
+    return jwt_decode(token);
+  }
 }
