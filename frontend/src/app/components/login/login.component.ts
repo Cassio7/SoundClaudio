@@ -36,11 +36,11 @@ export class LoginComponent implements OnInit {
   // login function, starts when press button
   login(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value)
       this.userServices.login(this.loginForm.value).subscribe({
         next: (response: any) => {
-          localStorage.setItem("token", response)
-          console.log(localStorage["token"])
+          // Set the token
+          this.authService.login(response)
+          window.location.reload();
         },
         error: (error) => {
           console.log(error.error.message)
