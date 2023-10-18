@@ -64,7 +64,7 @@ router.post('/login', (req, res) => {
     const users = req.body;
     // email lower case
     users.email = users.email.toLowerCase();
-    query = "select id, email, password, admin from users where email=?"
+    query = "select id, name, email, password, admin from users where email=?"
     connection.query(query, [users.email], (err, results) => {
         if (err)
             return res.status(500).json(err);
@@ -74,7 +74,7 @@ router.post('/login', (req, res) => {
                 bcrypt.compare(users.password, results[0].password, function (err, ress) {
                     // if res == true, password matched
                     if (ress == true) {
-                        const response = { id: results[0].id, email: results[0].email, admin: results[0].admin }
+                        const response = { id: results[0].id, name: results[0].name, email: results[0].email, admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                         console.log("Worka login")
                         return res.status(200).json(token);
