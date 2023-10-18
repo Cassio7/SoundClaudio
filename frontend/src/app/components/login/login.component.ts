@@ -21,23 +21,25 @@ export class LoginComponent implements OnInit {
     //initialize with a function
     this.loginForm = this.createFormGroup();
   }
-  
+
   createFormGroup(): FormGroup {
     return new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required, Validators.minLength(7), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,20}$/)])
     })
   }
-  //login function, starts when press button
+  // login function, starts when press button
   login(): void {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value)
-      this.userServices.login(this.loginForm.value).subscribe((response: any) => {
-        // set token on the localStorage on Application side
-        localStorage.setItem("token",response)
-        console.log(localStorage["token"])
-      }, (error) => {
-        console.log(error.error.message)
+      this.userServices.login(this.loginForm.value).subscribe({
+        next: (response:any) => {
+          localStorage.setItem("token", response)
+          console.log(localStorage["token"])
+        },
+        error: (error) => {
+          console.log(error.error.message)
+        }
       })
     }
     else
