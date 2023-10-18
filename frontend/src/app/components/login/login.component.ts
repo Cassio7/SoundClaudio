@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
+import { AuthService } from 'src/app/services/auth/auth.service'; 
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   // inizialize userServ for api
   constructor(private userServices: UserService,
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   // var for all the input from the form, 
@@ -18,6 +22,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   // function called after the creation of the project
   ngOnInit(): void {
+    this.checkAuthentication();
     //initialize with a function
     this.loginForm = this.createFormGroup();
   }
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value)
       this.userServices.login(this.loginForm.value).subscribe({
-        next: (response:any) => {
+        next: (response: any) => {
           localStorage.setItem("token", response)
           console.log(localStorage["token"])
         },
@@ -44,5 +49,11 @@ export class LoginComponent implements OnInit {
     }
     else
       console.log("not working")
+  }
+
+// User is authenticated, navigate to the home page
+  checkAuthentication() {
+    if (this.authService.isAuthenticated())
+      this.router.navigate(['/discovery']);
   }
 }
