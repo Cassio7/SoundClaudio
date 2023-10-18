@@ -19,7 +19,10 @@ import { DiscroverComponent } from './components/discrover/discrover.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AlbumComponent } from './components/album/album.component';
-import { SongComponent } from './components/song/song.component'
+import { SongComponent } from './components/song/song.component';
+import { E404Component } from './components/errrors/e404/e404.component';
+import { E401Component } from './components/errrors/e401/e401.component';
+import { E400Component } from './components/errrors/e400/e400.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { SongComponent } from './components/song/song.component'
     FooterComponent,
     DiscroverComponent,
     AlbumComponent,
-    SongComponent
+    SongComponent,
+    E404Component,
+    E401Component,
+    E400Component
   ],
   imports: [
     BrowserModule,

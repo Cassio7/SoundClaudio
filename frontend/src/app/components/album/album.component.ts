@@ -50,13 +50,13 @@ export class AlbumComponent implements OnInit {
         }
       },
       error: (error) => {
-        // Handle the error response (e.g., display an error message)
-        if (error.status === 400) {
+        // Handle the error response
+        if (error.status === 404)
+          // Handle the specific error with status code 404
+          this.router.navigate(['error/404']);
+        if (error.status === 400)
           // Handle the specific error with status code 400
-          this.router.navigate(['/error']);
-        } else {
-          // Handle other HTTP errors
-        }
+          this.router.navigate(['error/400']);
       }
     })
   }

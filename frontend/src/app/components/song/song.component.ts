@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song/song.service';
-import { ActivatedRoute, Params } from "@angular/router";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 // Info of the song
 interface Song{
@@ -33,6 +33,7 @@ export class SongComponent implements OnInit {
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private songService: SongService,
+    private router: Router,
   ) { }
   
   // Start the function with the component
@@ -64,6 +65,15 @@ export class SongComponent implements OnInit {
           // Get only the comments for *ngFor
           this.data.shift();
         }
+      },
+      error: (error) => {
+        // Handle the error response 
+        if (error.status === 404)
+          // Handle the specific error with status code 404
+          this.router.navigate(['error/404']);
+        if (error.status === 400)
+          // Handle the specific error with status code 400
+          this.router.navigate(['error/400']);
       }
     })
   }

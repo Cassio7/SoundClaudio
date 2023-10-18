@@ -22,7 +22,7 @@ router.get('/getallalbums', (req, res) => {
                 return res.status(200).json(results);
             }
             else
-                return res.status(400).json({ message: "No users found" });
+                return res.status(404).json({ message: "No users found" });
         }
     })
 })
@@ -50,7 +50,7 @@ router.post('/:id', (req, res) => {
                 return res.status(200).json(results);
             }
             else
-                return res.status(400).json({ message: "Nothing found" });
+                return res.status(404).json({ message: "Nothing found" });
         }
     })
 })
@@ -102,7 +102,7 @@ router.post('/song/:id', (req, res) => {
                 })
             }
             else
-                return res.status(400).json({ message: "Nothing found" });
+                return res.status(404).json({ message: "Nothing found" });
         }
     })
 })
