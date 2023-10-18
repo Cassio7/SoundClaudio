@@ -100,13 +100,13 @@ router.get('/getall', auth.auth, check.checkadmin, (req, res) => {
     query = "select * from users"
     connection.query(query, (err, results) => {
         if (err)
-            return res.status(500).json(err);
+            return res.status(400).json(err);
         else {
             if (results.length > 0) {
                 return res.status(200).json(results);
             }
             else
-                return res.status(400).json({ message: "No users found" });
+                return res.status(404).json({ message: "No users found" });
         }
     })
 })
