@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = this.getToken();
-    // Check if the token is valid, not expired 
+    const secretKey = environment.TOKEN_KEY;
     return token ? true : false;
   }
 
@@ -32,4 +33,5 @@ export class AuthService {
   logout() {
     this.clearToken();
   }
+  
 }
