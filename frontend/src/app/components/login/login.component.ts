@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.log(error.error.message)
+
+          alert(error.error.message)
         }
       })
     }

@@ -51,7 +51,8 @@ export class SignupComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.log(error.error.message)
+          alert(error.error.message)
+          window.location.reload();
         }
       })
     }
