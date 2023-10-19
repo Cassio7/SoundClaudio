@@ -8,10 +8,12 @@ export class AuthService {
 
   constructor() { }
 
+  // Set the token, called by login
   private setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
+  // Get the token from localStorage
   getToken(): any {
     return localStorage.getItem('token');
   }
@@ -25,14 +27,17 @@ export class AuthService {
     return false;
   }
 
+  // Delete the token, callled by logout
   private clearToken() {
     localStorage.removeItem('token');
   }
 
+  // Called to set the token
   login(token: string) {
     this.setToken(token);
   }
-  
+
+  // Called to clear the token
   logout() {
     this.clearToken();
   }
