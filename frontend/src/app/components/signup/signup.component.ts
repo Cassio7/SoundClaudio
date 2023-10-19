@@ -44,11 +44,15 @@ export class SignupComponent implements OnInit {
   //signup function, starts when press button
   signup(): void {
     if (this.signupForm.valid && this.signupForm.value["password"] == this.signupForm.value["password_verify"]) {
-      this.userServices.signup(this.signupForm.value).subscribe((response: any) => {
-        console.log(response)
-      }, (error) => {
-        console.log("ERRORERERERERE")
-        console.log(error)
+      this.userServices.signup(this.signupForm.value).subscribe({
+        next: (response: any) => {
+          // Set token
+          this.authService.login(response)
+          window.location.reload();
+        },
+        error: (error) => {
+          console.log(error.error.message)
+        }
       })
     }
     else
