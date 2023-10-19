@@ -8,7 +8,8 @@ const express = require('express');
 const connection = require('./connection');
 
 const usersRoute = require('./routes/users');
-const musicRoute = require('./routes/music')
+const musicRoute = require('./routes/music');
+const libraryRoute = require('./routes/library');
 
 //create an instance of the Express, allowing to define and handle routes
 const app = express();
@@ -25,5 +26,5 @@ app.use(express.json());
 //middleware functions to incoming HTTP requests liked with the file js
 app.use('/users', usersRoute);
 app.use('/music', musicRoute);
-
+app.use('/library', libraryRoute);
 module.exports = app;
