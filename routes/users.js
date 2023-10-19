@@ -24,7 +24,7 @@ router.post('/signup', (req, res) => {
     connection.query(query, [users.email], (err, results) => {
         if (err) // error query
             return res.status(500).json(err);
-        else { 
+        else {
             // if the query has content we can procede
             if (results.length <= 0) {
                 // the cost factor controls how much time is needed to calculate a single BCrypt hash
@@ -35,26 +35,29 @@ router.post('/signup', (req, res) => {
                     query = "insert into users(name, email, password , admin) values(?,?,?,0)";
                     connection.query(query, [users.name, users.email, hash], (err, results) => {
                         if (!err) {
-
-                            // return JWT token for auth
-                            const response = { email: users.email, admin: 0 }
-                            const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
-                            console.log("registrato")
-                            return res.status(200).json(token);
+                            // Repeat to get the id
+                            query = "select * from users where email=?"
+                            connection.query(query, [users.email], (err, data) => {
+                                // return JWT token for auth
+                                const response = { id: data[0].id, name: data[0].name, admin: data[0].admin }
+                                const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
+                                console.log("registrato")
+                                return res.status(200).json(token);
+                            })
                         }
-                        else{
+                        else {
                             console.log("err random")
                             return res.status(500).json(err);
                         }
-                            
+
                     })
                 });
             }
-            else{
+            else {
                 console.log("email esiste no registrazione")
                 return res.status(400).json({ message: "Email Already Exist. " });
             }
-                
+
         }
     })
 })
@@ -74,23 +77,23 @@ router.post('/login', (req, res) => {
                 bcrypt.compare(users.password, results[0].password, function (err, ress) {
                     // if res == true, password matched
                     if (ress == true) {
-                        const response = { id: results[0].id, name: results[0].name, email: results[0].email, admin: results[0].admin }
+                        const response = { id: results[0].id, name: results[0].name, admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                         console.log("Worka login")
                         return res.status(200).json(token);
                     }
-                    else{
+                    else {
                         console.log("pass non presa");
                         return res.status(400).json({ message: "Password do not match" });
                     }
-                        
+
                 });
             }
-            else{
+            else {
                 console.log("email non trovata");
                 return res.status(400).json({ message: "This Email do not exist" });
             }
-                
+
         }
     })
 })
