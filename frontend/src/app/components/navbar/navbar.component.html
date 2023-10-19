@@ -30,7 +30,7 @@
         <div class="dropdown" *ngIf="auth==true">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User
+            {{user.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" (click)="logout()">Logout</a>

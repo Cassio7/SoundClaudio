@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song/song.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { AuthService } from 'src/app/services/auth/auth.service';
+// User interface
+interface User {
+  id: number;
+  name: string;
+  admin: any;
+}
 
 // Info of the song
 interface Song{
@@ -18,7 +25,8 @@ interface Song{
   styleUrls: ['./song.component.css']
 })
 export class SongComponent implements OnInit {
-
+  
+  user!: User
   data:any;
   // Inizialize
   song: Song = {id: 0,       
@@ -29,11 +37,12 @@ export class SongComponent implements OnInit {
     mp3: ''
   }
   id: any;
-
+  temp: any
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private songService: SongService,
     private router: Router,
+    private authService: AuthService,
   ) { }
   
   // Start the function with the component
@@ -45,6 +54,12 @@ export class SongComponent implements OnInit {
       }
     )
     this.getinfo(this.id);
+    this.temp = this.authService.decode(this.authService.getToken())
+    this.user = {
+      id: this.temp["id"],
+      name: this.temp["name"],
+      admin: this.temp["admin"],
+    }
   }
 
   // Main function to get all the info for the tune
