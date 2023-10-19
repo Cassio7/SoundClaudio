@@ -20,7 +20,6 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = this.getToken();
     if(token){
-      console.log(this.decode(token))
       return true;
     }
     return false;
