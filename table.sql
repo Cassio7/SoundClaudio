@@ -154,3 +154,6 @@ insert into songs(name,id_artist,id_album,mp3) value('God Is Fair, Sexy Nasty',5
 
 -- Comments test
 insert into comments(id_user, id_song, comment) value(2,1,"Hitttttt");
+
+-- Likes test
+insert into libraries(id_user, id_song) value(2,1);
