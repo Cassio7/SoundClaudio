@@ -23,7 +23,7 @@ router.post('/signup', (req, res) => {
     // send the query and replace with users.email send from the body
     connection.query(query, [users.email], (err, results) => {
         if (err) // error query
-            return res.status(500).json(err);
+            return res.status(400).json(err);
         else {
             // if the query has content we can procede
             if (results.length <= 0) {
