@@ -1,25 +1,35 @@
-.font{
+.font {
     background-color: #282a36;
     color: white;
     margin-left: 28px;
-    display:inline-block; 
+    display: inline-block;
 }
-.uptop{
-    margin-top: -1%; 
+
+.uptop {
+    margin-top: -1%;
     background-color: #c6ac8f;
 }
-.circle{
+
+.circle {
     margin-left: 10px;
     font-size: 121px;
 }
-.fixcircle{
+
+.fixcircle {
     color: white;
     margin-left: -108px;
     font-size: 65%;
 }
+
 .unpress {
     border: none;
     padding: 0;
     background: none;
     margin-right: 18px;
+}
+/* Used for the color of the heart, if the song is already liked is orange */
+.fillfav {
+    font-variation-settings:
+        'FILL' 1;
+    color: #f50
 }
