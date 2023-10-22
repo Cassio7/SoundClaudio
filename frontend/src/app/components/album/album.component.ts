@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from 'src/app/services/album/album.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/models/user';
+import { LibraryService } from 'src/app/services/library/library.service';
 
 // For single info inside the query
 interface Album {
@@ -20,10 +23,18 @@ export class AlbumComponent implements OnInit {
   album: Album = { numsong: 0, name: "", art: "", img: "" }
   songs: any;
   id: any;
+
+  likes: any;
+  user!: User
+  temp: any;
+  arrayid: number[] = [];
+
   // inizialize albumServ for api
   constructor(private route: ActivatedRoute,
     private albumService: AlbumService,
     private router: Router,
+    private authService: AuthService,
+    private libraryServ: LibraryService
   ) { }
 
   // Start the function with the component
@@ -35,6 +46,16 @@ export class AlbumComponent implements OnInit {
       }
     )
     this.getalbum(this.id);
+    if (this.authService.isAuthenticated()) {
+      this.temp = this.authService.decode(this.authService.getToken())
+      this.user = {
+        id: this.temp["id"],
+        name: this.temp["name"],
+        admin: this.temp["admin"],
+      }
+      this.getlikes();
+    }
+
   }
 
   // Get all the album from the backend
@@ -60,4 +81,20 @@ export class AlbumComponent implements OnInit {
       }
     })
   }
+    //Get all likes from db, favorite icon change color is match id
+    getlikes(): void {
+      this.libraryServ.getlikes(this.user.id).subscribe({
+        next: (response) => {
+          this.likes = response;
+          for (let index = 0; index < this.likes.length; index++) {
+             this.arrayid.push(this.likes[index].id); 
+          }
+        },
+        error: (error) => {
+          if (error.status === 404){
+            alert("Your Library is empty, put some likes!")
+          }
+        }
+      })
+    }
 }
