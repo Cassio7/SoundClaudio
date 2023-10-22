@@ -28,17 +28,15 @@ export class LibreriaComponent implements OnInit{
         admin: this.temp["admin"],
       }
       this.getlikes();
-      console.log(this.user.id)
     }
     
   }
 
-  //Get all the album from the backend
+  //Get likes from db
   getlikes(): void {
     this.libraryServ.getlikes(this.user.id).subscribe({
       next: (response) => {
         this.likes = response;
-        console.log(response)
       },
       error: (error) => {
         if (error.status === 404){
