@@ -9,8 +9,8 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./libreria.component.css']
 })
 
-export class LibreriaComponent implements OnInit{
-  
+export class LibreriaComponent implements OnInit {
+
   likes: any;
   user!: User
   temp: any;
@@ -29,7 +29,6 @@ export class LibreriaComponent implements OnInit{
       }
       this.getlikes();
     }
-    
   }
 
   //Get likes from db
@@ -39,9 +38,20 @@ export class LibreriaComponent implements OnInit{
         this.likes = response;
       },
       error: (error) => {
-        if (error.status === 404){
+        if (error.status === 404) {
           alert("Your Library is empty, put some likes!")
         }
+      }
+    })
+  }
+
+  // Add song to lib
+  deletesong(event: Event,idsong: number): void {
+    // Stop the a to go to the linked song
+    event.stopPropagation();
+    this.libraryServ.deletesong(idsong, this.user.id).subscribe({
+      next: (response) => {
+        console.log(response)
       }
     })
   }
