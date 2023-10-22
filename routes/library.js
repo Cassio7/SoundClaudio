@@ -8,7 +8,7 @@ router.post('/likesong', (req, res) => {
     const id = req.body.id;
     // Check if it's already in it
     query = "select songs.name from songs inner join libraries on songs.id = libraries.id_song where libraries.id_song = ? and libraries.id_user = ?"
-    connection.query(query, [idsong,id], (err, results) => {
+    connection.query(query, [idsong, id], (err, results) => {
         if (err)
             return res.status(400).json(err);
         else {
@@ -16,15 +16,15 @@ router.post('/likesong', (req, res) => {
             if (results.length <= 0) {
                 // Put the new song to library in db
                 query = "insert into libraries(id_user, id_song) value(?,?);"
-                connection.query(query, [id,idsong], (err, result) => {
+                connection.query(query, [id, idsong], (err, result) => {
                     if (!err) {
-                        return res.status(200).json({message: "Song added to likes"});
+                        return res.status(200).json({ message: "Song added to likes" });
                     }
                 })
             }
             // The song is already inside
             else
-                return res.status(404).json({ message: "This song is already in your library: "+ results[0].name });
+                return res.status(404).json({ message: "This song is already in your library: " + results[0].name });
         }
     })
 
@@ -37,7 +37,7 @@ router.post('/deletesong', (req, res) => {
     const id = req.body.id;
     // Check if it's already in it
     query = "select songs.name from songs inner join libraries on songs.id = libraries.id_song where libraries.id_song = ? and libraries.id_user = ?"
-    connection.query(query, [idsong,id], (err, results) => {
+    connection.query(query, [idsong, id], (err, results) => {
         if (err)
             return res.status(400).json(err);
         else {
@@ -45,15 +45,15 @@ router.post('/deletesong', (req, res) => {
             if (results.length > 0) {
                 // Delet the song to library in db
                 query = "delete from libraries where libraries.id_song = ? and libraries.id_user = ?"
-                connection.query(query, [idsong,id], (err, result) => {
+                connection.query(query, [idsong, id], (err, result) => {
                     if (!err) {
-                        return res.status(200).json({message: "Song removed from library: "+ results[0].name});
+                        return res.status(200).json({ message: "Song removed from library: " + results[0].name });
                     }
                 })
             }
             // The song is not inside
             else
-                return res.status(404).json({ message: "This song is not in your library: "});
+                return res.status(404).json({ message: "This song is not in your library: " });
         }
     })
 
@@ -63,7 +63,17 @@ router.post('/deletesong', (req, res) => {
 // Get all the liked songs from a specific user
 router.post('/getlikes', (req, res) => {
     const id = req.body.id;
-    query = "select songs.name, songs.id, songs.mp3 from libraries inner join songs on songs.id = libraries.id_song where libraries.id_user = ?";
+    const query = `
+    SELECT
+      songs.name,
+      songs.id,
+      songs.mp3,
+      albums.img
+    FROM libraries
+    INNER JOIN songs ON songs.id = libraries.id_song
+    INNER JOIN albums ON albums.id = songs.id_album
+    WHERE libraries.id_user = ?;
+  `;
     connection.query(query, [id], (err, results) => {
         if (err)
             return res.status(400).json(err);
