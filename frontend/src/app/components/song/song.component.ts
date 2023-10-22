@@ -15,7 +15,14 @@ export class SongComponent implements OnInit {
   
   user!: User
   data:any;
-  song!: Song;
+  // Avoid errors console log
+  song: Song= {id: 0,       
+    namesong: '',
+    img: '',
+    name: '',
+    nameart: '',
+    mp3: ''
+  }
   id: any;
   temp: any
   // inizialize imports

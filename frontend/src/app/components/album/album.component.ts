@@ -13,7 +13,8 @@ import { Album } from 'src/app/models/album';
 })
 
 export class AlbumComponent implements OnInit {
-  album!: Album;
+  //Avoid errors console log
+  album: Album = { numsong: 0, name: "", art: "", img: "" }
   songs: any;
   id: any;
 
@@ -84,9 +85,6 @@ export class AlbumComponent implements OnInit {
           }
         },
         error: (error) => {
-          if (error.status === 404){
-            alert("Your Library is empty, put some likes!")
-          }
         }
       })
     }
