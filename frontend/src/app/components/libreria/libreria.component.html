@@ -1,13 +1,25 @@
 <h1 class="text-center top">Welcome to your library!</h1>
-<div class="list-group fixfooter">
-    <a routerLink="/song/{{like.id}}" class="list-group-item list-group-item-action" id="{{like.id}}"
-        *ngFor="let like of likes">
-        {{like.name}}
-        <form style="display: inline" (click)="deletesong($event,like.id)">
-            <button class="unpress" style="float: right;" type="submit">
-                <span class="material-symbols-outlined fillfav">
-                    favorite
-                </span></button>
-        </form>
-    </a>
+<hr>
+<div class="row card-group fixfooter" style="margin-top: 5%;">
+    <!-- Fetch all the albums  -->
+    <div class="col-3 mb-5" *ngFor="let like of likes">
+        <div class="card w-75 border-0" style="background-color: #f2f2f2;">
+            <a routerLink="/song/{{like.id}}" id="{{like.id}}">
+                <img class="card-img-top" src="{{like.img}}" alt="Card image cap">
+                <div class="card-img-overlay ">
+                    <div class="card-title ">
+                        <form style="display: inline" (click)="deletesong($event,like.id)">
+                            <button class="unpress" type="submit">
+                                <span class="material-symbols-outlined fillfav">
+                                    favorite
+                                </span></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title fixleft">{{like.name}}</h5>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
