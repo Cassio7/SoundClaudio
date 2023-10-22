@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LibraryService } from 'src/app/services/library/library.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
-// User interface
-interface User {
-  id: number;
-  name: string;
-  admin: any;
-}
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-libreria',
@@ -19,7 +13,6 @@ export class LibreriaComponent implements OnInit{
   
   likes: any;
   user!: User
-
   temp: any;
 
   constructor(private libraryServ: LibraryService,
@@ -45,6 +38,12 @@ export class LibreriaComponent implements OnInit{
     this.libraryServ.getlikes(this.user.id).subscribe({
       next: (response) => {
         this.likes = response;
+        console.log(response)
+      },
+      error: (error) => {
+        if (error.status === 404){
+          alert("Your Library is empty, put some likes!")
+        }
       }
     })
   }
