@@ -18,14 +18,18 @@
     *ngFor="let song of songs">
     {{song.namesong}}
     <!-- Show this if is not in library  -->
-    <button class="unpress" style="float: right;" *ngIf="!arrayid.includes(song.id)">
-      <span class="material-symbols-outlined">
-        favorite
-      </span></button>
+    <form style="display: inline" (click)="likesong($event,song.id)"*ngIf="!arrayid.includes(song.id)">
+      <button class="unpress" style="float: right;" >
+        <span class="material-symbols-outlined">
+          favorite
+        </span></button>
+    </form>
     <!-- Show this if is in library  -->
-    <button class="unpress" style="float: right;" *ngIf="arrayid.includes(song.id)">
-      <span class="material-symbols-outlined fillfav">
-        favorite
-      </span></button>
+    <form style="display: inline" (click)="deletesong($event,song.id)" *ngIf="arrayid.includes(song.id)">
+      <button class="unpress" style="float: right;">
+        <span class="material-symbols-outlined fillfav">
+          favorite
+        </span></button>
+    </form>
   </a>
 </div>

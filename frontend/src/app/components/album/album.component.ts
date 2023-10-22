@@ -75,17 +75,38 @@ export class AlbumComponent implements OnInit {
       }
     })
   }
-    //Get all likes from db, favorite icon change color is match id
-    getlikes(): void {
-      this.libraryServ.getlikes(this.user.id).subscribe({
-        next: (response) => {
-          this.likes = response;
-          for (let index = 0; index < this.likes.length; index++) {
-             this.arrayid.push(this.likes[index].id); 
-          }
-        },
-        error: (error) => {
+  //Get all likes from db, favorite icon change color is match id
+  getlikes(): void {
+    this.libraryServ.getlikes(this.user.id).subscribe({
+      next: (response) => {
+        this.likes = response;
+        for (let index = 0; index < this.likes.length; index++) {
+          this.arrayid.push(this.likes[index].id);
         }
-      })
-    }
+      },
+      error: (error) => {
+      }
+    })
+  }
+
+  // Add song to lib
+  likesong(event: Event, idsong: number): void {
+    // Stop the a to go to the linked song
+    event.stopPropagation();
+    this.libraryServ.likesong(idsong, this.user.id).subscribe({
+      next: (response) => {
+        console.log(response)
+      }
+    })
+  }
+  // Delete song from lib
+  deletesong(event: Event, idsong: number): void {
+    // Stop the a to go to the linked song
+    event.stopPropagation();
+    this.libraryServ.deletesong(idsong, this.user.id).subscribe({
+      next: (response) => {
+        console.log(response)
+      }
+    })
+  }
 }
