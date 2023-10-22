@@ -20,3 +20,10 @@
     background-color: #f50;
     transition: width 0.3s ease-in-out;
 }
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+  }
