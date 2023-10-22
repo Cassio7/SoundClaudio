@@ -8,6 +8,7 @@
 .uptop {
     margin-top: -1%;
     background-color: #c6ac8f;
+    background-image: linear-gradient(to right, #f50 0%, black 100%);
 }
 
 .circle {

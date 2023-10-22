@@ -2,22 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song/song.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { AuthService } from 'src/app/services/auth/auth.service';
-// User interface
-interface User {
-  id: number;
-  name: string;
-  admin: any;
-}
+import { User } from 'src/app/models/user';
+import { Song } from 'src/app/models/song';
 
-// Info of the song
-interface Song{
-  id : number;
-  namesong: string;
-  img: string;
-  name: string;
-  nameart: string;
-  mp3: string;
-}
 
 @Component({
   selector: 'app-song',
@@ -28,17 +15,10 @@ export class SongComponent implements OnInit {
   
   user!: User
   data:any;
-  // Inizialize
-  song: Song = {id: 0,       
-    namesong: '',
-    img: '',
-    name: '',
-    nameart: '',
-    mp3: ''
-  }
+  song!: Song;
   id: any;
   temp: any
-  // inizialize albumServ for api
+  // inizialize imports
   constructor(private route: ActivatedRoute,
     private songService: SongService,
     private router: Router,

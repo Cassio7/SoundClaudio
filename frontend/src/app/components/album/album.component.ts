@@ -4,14 +4,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/user';
 import { LibraryService } from 'src/app/services/library/library.service';
-
-// For single info inside the query
-interface Album {
-  numsong: number;
-  name: string;
-  art: string;
-  img: string;
-}
+import { Album } from 'src/app/models/album';
 
 @Component({
   selector: 'app-album',
@@ -20,7 +13,7 @@ interface Album {
 })
 
 export class AlbumComponent implements OnInit {
-  album: Album = { numsong: 0, name: "", art: "", img: "" }
+  album!: Album;
   songs: any;
   id: any;
 

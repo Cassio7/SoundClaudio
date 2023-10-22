@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@mapbox/node-pre-gyp": "^1.0.11",
     "bootstrap-icons": "^1.11.1",
     "jwt-decode": "^3.1.2",
     "rxjs": "~7.8.0",
