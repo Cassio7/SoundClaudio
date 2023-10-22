@@ -2,7 +2,6 @@
     border: none;
     padding: 0;
     background: none;
-    margin-right: 18px;
 }
 
 .top {
@@ -11,11 +10,19 @@
 }
 
 .fixfooter {
-    margin-bottom: 50%;
+    margin-bottom: 35%;
 }
 
 .fillfav {
     font-variation-settings:
         'FILL' 1;
     color: #f50
+}
+a{
+    text-decoration:none; 
+    color: inherit;
+}
+.fixleft{
+    margin-left: -20px;
+    margin-top: -10px;
 }
