@@ -63,7 +63,7 @@ router.post('/deletesong', (req, res) => {
 // Get all the liked songs from a specific user
 router.post('/getlikes', (req, res) => {
     const id = req.body.id;
-    query = "select songs.name, songs.id from libraries inner join songs on songs.id = libraries.id_song where libraries.id_user = ?";
+    query = "select songs.name, songs.id, songs.mp3 from libraries inner join songs on songs.id = libraries.id_song where libraries.id_user = ?";
     connection.query(query, [id], (err, results) => {
         if (err)
             return res.status(400).json(err);
