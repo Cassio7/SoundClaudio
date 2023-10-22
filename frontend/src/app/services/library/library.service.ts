@@ -12,7 +12,10 @@ export class LibraryService {
   constructor(private httpClient: HttpClient) { }
 
   getlikes(id: number) {
-    return this.httpClient.post(this.url + "/library/getlikes",id, {
+    const requestBody = {
+      id: id // Replace with your desired ID value
+    };
+    return this.httpClient.post(this.url + "/library/getlikes",requestBody, {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }
