@@ -21,6 +21,16 @@ export class LibraryService {
     })
   }
   
+  likesong(idsong: number,id: number) {
+    const requestBody = {
+      id: id, // Replace with your desired ID value
+      idsong: idsong
+    };
+    return this.httpClient.post(this.url + "/library/likesong",requestBody, {
+      headers: new HttpHeaders().set("Content-Type", "application/json")
+    })
+  }
+
   deletesong(idsong: number,id: number) {
     const requestBody = {
       id: id, // Replace with your desired ID value
