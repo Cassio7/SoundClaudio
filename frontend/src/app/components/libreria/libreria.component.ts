@@ -45,7 +45,7 @@ export class LibreriaComponent implements OnInit {
     })
   }
 
-  // Add song to lib
+  // Delete song from lib
   deletesong(event: Event,idsong: number): void {
     // Stop the a to go to the linked song
     event.stopPropagation();
