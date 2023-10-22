@@ -46,9 +46,11 @@ router.post('/deletesong', (req, res) => {
                 // Delet the song to library in db
                 query = "delete from libraries where libraries.id_song = ? and libraries.id_user = ?"
                 connection.query(query, [idsong,id], (err, result) => {
-                    if (!err) {
+                    if (result) {
                         return res.status(200).json({message: "Song removed from library: "+ results[0].name});
                     }
+                    if(err)
+                        return res.status(404).json({ message: "idk wtf happend"});
                 })
             }
             // The song is not inside
