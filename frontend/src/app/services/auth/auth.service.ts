@@ -25,6 +25,10 @@ export class AuthService {
       const decode: any = jwt_decode(token);
       if (decode["exp"] > 0)
         return true;
+      else{
+        this.logout();
+        return false;
+      }
     }
     return false;
   }
