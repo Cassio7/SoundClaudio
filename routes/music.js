@@ -29,7 +29,6 @@ router.get('/getallalbums', (req, res) => {
 
 // Comment a song
 router.post('/comment', (req, res) => {
-    console.log("comment section");
     const idsong = req.body.idsong;
     const id = req.body.id;
     const comment = req.body.comment;
