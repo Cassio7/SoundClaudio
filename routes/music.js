@@ -22,7 +22,7 @@ router.get('/getallalbums', (req, res) => {
                 return res.status(200).json(results);
             }
             else
-                return res.status(404).json({ message: "No users found" });
+                return res.status(404).json({ message: "No albums found" });
         }
     })
 })
@@ -104,6 +104,21 @@ router.post('/song/:id', (req, res) => {
             else
                 return res.status(404).json({ message: "Nothing found" });
         }
+    })
+})
+
+// Comment a song
+router.post('/comment',(req, res) => {
+    console.log("comment section")
+    const idsong = req.body.idsong;
+    const id = req.body.id;
+    const comment = req.vody.comment;
+    query = "insert into comments(id_user, id_song, comment) value(?,?,?)";
+    connection.query(query,[id,idsong,comment], (err,results) => {
+        if (err)
+            return res.status(400).json(err);
+        else
+            return res.status(200).json({ message: "Song commented" });
     })
 })
 
