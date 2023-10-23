@@ -8,22 +8,23 @@
     padding: 0;
     background: none;
     margin-right: 18px;
+    outline: none;
 }
 
-.progress{
-    height: 5px;
-    z-index: 1000;
+.vertical {
+    appearance: slider-vertical;
+    position: absolute;
+    top: 0; /* Position the range input on top of the button */
+    left: 0; /* Adjust left position if needed */
 }
-.progress-bar {
-    height: 100%;
-    width: 50%;
-    background-color: #f50;
-    transition: width 0.3s ease-in-out;
+
+.volume {
+    display: inline-block;
+    position: relative;
 }
-.material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
-  }
+
+.duration[type="range"]{
+    width: 550px;
+    height: 10px;
+    background-color: #f50 !important;
+}
