@@ -1,16 +1,20 @@
-<div class="material-symbols-outlined d-flex">
-  <nav class="navbar fixed-bottom navbar-light border-top justify-content-center">
+<nav class="navbar fixed-bottom navbar-light border-top justify-content-center">
+  <div class="material-symbols-outlined d-flex">
     <button class="unpress">skip_previous</button>
-    <button class="unpress">play_arrow</button>
-    <!-- <button class="unpress">pause</button> -->
+    <button class="unpress" (click)="play()">{{audio.paused ? 'play_arrow' : 'pause'}}</button>
     <button class="unpress">skip_next</button>
+  </div>
+  00
+  <input type="range" class="form-range duration">
 
-    <!-- not showing -->
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0"
-        aria-valuemax="100"></div>
-    </div>
+  <div class="material-symbols-outlined d-flex">
     <!-- <button class="unpress">volume_off</button> -->
-    <button class="unpress">volume_up</button>
-  </nav>
-</div>
+    <div class="volume">
+      <button (mouseenter)="showRangeInput = true" (mouseleave)="showRangeInput = false"
+        class="unpress">volume_up</button>
+      <div *ngIf="showRangeInput" class="form-group">
+        <input type="range" class="form-range vertical">
+      </div>
+    </div>
+  </div>
+</nav>
