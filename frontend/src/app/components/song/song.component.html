@@ -26,14 +26,17 @@
 <ul class="list-group list-group-flush">
     <h3 class="title">Post your comment about this song</h3>
     <li class="list-group-item" style="background-color: #f2f2f2;">
-        <form class="form-inline">
+        <!-- Form for comment song -->
+        <form class="form-inline" [formGroup]="commentForm" (ngSubmit)="comment(song.id,user.id)" novalidate>
             <div class="form-group mb-2 mr-5">
                 <h5>{{user.name}}</h5>
             </div>
             <div class="form-group mx-sm-3 mb-2" >
-                <textarea class="form-control" placeholder="Comment" cols="32"></textarea>            
+                <textarea class="form-control" formControlName="comment" placeholder="Comment" cols="32"></textarea>            
             </div>
-            <button type="submit" id="button1" class="btn mb-2">Post comment</button>
+            <button type="submit" id="button1" class="btn mb-2" [disabled]="!commentForm.valid">
+                Post comment
+            </button>
         </form>
     </li>
 </ul>

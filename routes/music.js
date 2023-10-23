@@ -3,7 +3,7 @@ const connection = require('../connection');
 const router = express.Router();
 
 
-// Get all the album lited with the name of the artist
+// Get all the album list with the name of the artist
 router.get('/getallalbums', (req, res) => {
     const query = `
         SELECT 
@@ -25,6 +25,25 @@ router.get('/getallalbums', (req, res) => {
                 return res.status(404).json({ message: "No albums found" });
         }
     })
+})
+
+// Comment a song
+router.post('/comment', (req, res) => {
+    console.log("comment section");
+    const idsong = req.body.idsong;
+    const id = req.body.id;
+    const comment = req.body.comment;
+    if (id != null && idsong != null && comment != null) {
+        query = "insert into comments(id_user, id_song, comment) value(?,?,?);";
+        connection.query(query, [id, idsong, comment], (err, results) => {
+            if (err)
+                return res.status(400).json({ message: "Query error" });
+            else
+                return res.status(200).json({ message: "Song commented" });
+        })
+    }
+    else
+        return res.status(400).json({ message: "Something is null" });
 })
 
 // Fetch album, artist, and songs by album ID
@@ -50,7 +69,7 @@ router.post('/:id', (req, res) => {
                 return res.status(200).json(results);
             }
             else
-                return res.status(404).json({ message: "Nothing found" });
+                return res.status(404).json({ message: "dicoane" });
         }
     })
 })
@@ -107,19 +126,7 @@ router.post('/song/:id', (req, res) => {
     })
 })
 
-// Comment a song
-router.post('/comment',(req, res) => {
-    console.log("comment section")
-    const idsong = req.body.idsong;
-    const id = req.body.id;
-    const comment = req.vody.comment;
-    query = "insert into comments(id_user, id_song, comment) value(?,?,?)";
-    connection.query(query,[id,idsong,comment], (err,results) => {
-        if (err)
-            return res.status(400).json(err);
-        else
-            return res.status(200).json({ message: "Song commented" });
-    })
-})
+
+
 
 module.exports = router;

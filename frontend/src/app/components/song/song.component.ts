@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song/song.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/user';
 import { Song } from 'src/app/models/song';
@@ -25,6 +26,11 @@ export class SongComponent implements OnInit {
   }
   id: any;
   temp: any
+
+  // var for all the input from the form, 
+  // FormGroup Tracks the value and validity state 
+  commentForm!: FormGroup;
+
   // inizialize imports
   constructor(private route: ActivatedRoute,
     private songService: SongService,
@@ -47,6 +53,13 @@ export class SongComponent implements OnInit {
       name: this.temp["name"],
       admin: this.temp["admin"],
     }
+    this.commentForm = this.createFormGroup();
+  }
+
+  createFormGroup(): FormGroup {
+    return new FormGroup({
+      comment: new FormControl("", [Validators.required])
+    })
   }
 
   // Main function to get all the info for the tune
@@ -78,5 +91,20 @@ export class SongComponent implements OnInit {
           this.router.navigate(['error/400']);
       }
     })
+  }
+
+  comment(idsong:number,id:number): void{
+    if(this.commentForm.valid){
+      this.songService.comment(this.user.id,this.id,this.commentForm.value.comment).subscribe({
+        next: (response) => {
+          alert("Song commented");
+          window.location.reload();
+        },
+        error: (error) =>{
+          if (error.status === 400)
+           alert(error.error.message)
+        }
+      })
+    }
   }
 }

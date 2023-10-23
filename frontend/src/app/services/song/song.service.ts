@@ -17,4 +17,15 @@ export class SongService {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }
+
+  comment(id:number,idsong:number,comment: any){
+    const requestBody = {
+      id: id, 
+      idsong: idsong,
+      comment: comment
+    };
+    return this.httpClient.post(this.url + "/music/comment",requestBody,{
+      headers: new HttpHeaders().set("Content-Type", "application/json")
+    })
+  }
 }
