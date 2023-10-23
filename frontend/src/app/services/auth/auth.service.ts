@@ -21,16 +21,10 @@ export class AuthService {
   // Return true if there is a token, else false
   isAuthenticated(): boolean {
     const token = this.getToken();
-    if (token) {
-      const decode: any = jwt_decode(token);
-      if (decode["exp"] > 0)
-        return true;
-      else{
-        this.logout();
-        return false;
-      }
-    }
-    return false;
+    if (token) 
+      return true;
+    else
+      return false;
   }
 
   // Delete the token, callled by logout
