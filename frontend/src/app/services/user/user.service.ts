@@ -22,4 +22,13 @@ export class UserService {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }
+  upload(title: string, mp3: any) {
+    const requestBody = {
+      title: title, 
+      mp3: mp3
+    };
+    return this.httpClient.post(this.url + "/users/upload", requestBody, {
+      headers: new HttpHeaders().set("Content-Type", "application/json")
+    })
+  }
 }
