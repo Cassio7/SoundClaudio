@@ -8,22 +8,22 @@
                 <div class="card-body bg-light">
                     <div class="container">
                         <!-- Start Form -->
-                        <form id="contact-form" role="form">
+                        <form id="contact-form" [formGroup]="dataForm" (ngSubmit)="send($event)" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Title</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" formControlName="title">
                                 </div>
                             </div>
                             <div class="row pt-3">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Put your mp3 here:</label>
-                                        <input class="form-control" type="file" id="formFile">
+                                        <input class="form-control" type="file" formControlName="mp3" (change)="onChange($event)">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button [disabled]="" class="btn btn-lg btn-block" id="button1"
+                                    <button [disabled]="!dataForm.valid" class="btn btn-lg btn-block" id="button1"
                                         type="submit">Send</button>
                                 </div>
                             </div>

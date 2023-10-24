@@ -15,7 +15,7 @@ const check = require('../services/checkadmin');
 
 // signup anon function, create new user and return token
 router.post('/signup', (req, res) => {
-    let users = req.body;
+    const users = req.body;
     // lowercase email
     users.email = users.email.toLowerCase();
     // query for check email already exists, ? wait a input 
@@ -111,6 +111,18 @@ router.get('/getall', auth.auth, check.checkadmin, (req, res) => {
             else
                 return res.status(404).json({ message: "No users found" });
         }
+    })
+})
+
+router.post('/upload', (req, res) => {
+    const title = req.body.title;
+    const mp3 = req.body.mp3;
+    query = "insert into songs(name,id_artist,id_album,mp3) value(?,3,3,?);";
+    connection.query(query, [title, mp3], (err, results) => {
+        if (err)
+            return res.status(400).json(err);
+        else
+            return res.status(200).json({message: "Uploaded"});
     })
 })
 
