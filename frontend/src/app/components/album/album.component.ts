@@ -59,9 +59,9 @@ export class AlbumComponent implements OnInit {
         this.songs = response
         this.album = {
           numsong: this.songs.length,
-          name: this.songs[1].name,
-          art: this.songs[1].nameart,
-          img: this.songs[1].img,
+          name: this.songs[0].name,
+          art: this.songs[0].nameart,
+          img: this.songs[0].img,
         }
       },
       error: (error) => {
