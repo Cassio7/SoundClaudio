@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-carica',
@@ -11,6 +11,10 @@ export class CaricaComponent implements OnInit {
 
   dataForm!: FormGroup;
   file: any;
+
+  constructor(private userServ: UserService
+  ) { }
+
 
   // function called after the creation of the project
   ngOnInit(): void {
@@ -27,14 +31,16 @@ export class CaricaComponent implements OnInit {
   // On file Select 
   onChange(event:any) {
     this.file = event.target.files[0];
-    console.log(this.file)
     if(this.file.type != 'audio/mpeg'){
       alert('Plese put a mp3 audio!');
       window.location.reload();
     }
   }
-  send(event: any): void {
-    console.log(this.dataForm.value.mp3);
+  send(): void {
+    this.userServ.upload(this.dataForm.value.mp3,this.file).subscribe({
+      next: (response) => {
+        console.log(response)
+      }
+    })
   }
-
 }
