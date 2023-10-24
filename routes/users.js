@@ -114,16 +114,32 @@ router.get('/getall', auth.auth, check.checkadmin, (req, res) => {
     })
 })
 
-router.post('/upload', (req, res) => {
+// For save the mp3 file on upload
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './')
+    },
+    filename: function (req, file, cb) {
+        cb(null, req.body.title + '.' + file.mimetype.split('/')[1])
+    }
+})
+
+const upload = multer({ storage: storage })
+
+// Upload mp3 file
+router.post('/upload',upload.single('mp3'), (req, res) => {
     const title = req.body.title;
     const mp3 = req.body.mp3;
-    query = "insert into songs(name,id_artist,id_album,mp3) value(?,3,3,?);";
-    connection.query(query, [title, mp3], (err, results) => {
-        if (err)
-            return res.status(400).json(err);
-        else
-            return res.status(200).json({message: "Uploaded"});
-    })
+    console.log('idk')
+    res.status(200).json('File uploaded successfully');
+    // query = "insert into songs(name,id_artist,id_album,mp3) value(?,3,3,?);";
+    // connection.query(query, [title, mp3], (err, results) => {
+    //     if (err)
+    //         return res.status(400).json(err);
+    //     else
+    //         return res.status(200).json({ message: "Uploaded" });
+    // })
 })
 
 module.exports = router;
