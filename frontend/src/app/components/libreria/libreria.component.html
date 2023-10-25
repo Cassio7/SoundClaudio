@@ -1,4 +1,8 @@
-<h1 class="text-center top">Welcome to your library!</h1>
+<h1 class="text-center top">Welcome to your library!
+    <div class="material-symbols-outlined player">
+        <button class="unpress fillfav" (click)="player(); $event.preventDefault(); false;">play_circle</button>
+    </div>
+</h1>
 <hr>
 <div class="row card-group fixfooter" style="margin-top: 5%;">
     <!-- Fetch all the albums  -->

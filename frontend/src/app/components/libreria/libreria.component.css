@@ -2,6 +2,7 @@
     border: none;
     padding: 0;
     background: none;
+    outline: none;
 }
 
 .top {
@@ -16,13 +17,20 @@
 .fillfav {
     font-variation-settings:
         'FILL' 1;
-    color: #f50
+    color: #f50;
 }
-a{
-    text-decoration:none; 
+
+a {
+    text-decoration: none;
     color: inherit;
 }
-.fixleft{
+
+.fixleft {
     margin-left: -20px;
     margin-top: -10px;
+}
+
+.player {
+    display: inline;
+    font-size: 50px;
 }
