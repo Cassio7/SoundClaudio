@@ -12,10 +12,7 @@
 }
 
 .vertical {
-    appearance: slider-vertical;
-    position: absolute;
-    top: 0; /* Position the range input on top of the button */
-    left: 0; /* Adjust left position if needed */
+    display: inline;
 }
 
 .volume {
@@ -23,7 +20,7 @@
     position: relative;
 }
 
-.duration[type="range"]{
+.duration[type="range"] {
     width: 550px;
     height: 10px;
     background-color: #f50 !important;

@@ -4,16 +4,15 @@
     <button class="unpress" (click)="play()">{{audio.paused ? 'play_arrow' : 'pause'}}</button>
     <button class="unpress">skip_next</button>
   </div>
-  00
-  <input type="range" class="form-range duration">
-
+  <div style="display: inline; margin-right: 10px;">{{currentTime}}</div>
+  <input type="range" class="form-range duration" (input)="durationSlider($event)" value="{{audio.readyState === 0 ? 0 : audio.currentTime}}" min="0" max="{{duration}}">
+  <div style="display: inline; margin-left: 10px;">{{musicLength}}</div>
   <div class="material-symbols-outlined d-flex">
     <!-- <button class="unpress">volume_off</button> -->
     <div class="volume">
-      <button (mouseenter)="showRangeInput = true" (mouseleave)="showRangeInput = false"
-        class="unpress">volume_up</button>
-      <div *ngIf="showRangeInput" class="form-group">
-        <input type="range" class="form-range vertical">
+      <button class="unpress ml-4">volume_up</button>
+      <div class="form-group vertical">
+        <input type="range" class="form-range" (input)="volumeSlider($event)" [value]="audio.volume * 100" max="100" step="1">
       </div>
     </div>
   </div>
