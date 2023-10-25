@@ -16,12 +16,14 @@
 <div class="list-group">
   <a routerLink="/song/{{song.id}}" class="list-group-item list-group-item-action" id="{{song.id}}"
     *ngFor="let song of songs">
-    {{song.namesong}}
     <!-- To not reload the page after sending data to player -->
-    <form style="display: inline" (click)="player($event,song.id); $event.preventDefault(); false;" ><button>Send</button></form>
+    <div class="material-symbols-outlined">
+      <button class="unpress fillfav" (click)="player($event,song.id); $event.preventDefault(); false;">play_circle</button>
+    </div>
+    {{song.namesong}}
     <!-- Show this if is not in library  -->
-    <form style="display: inline" (click)="likesong($event,song.id)"*ngIf="!arrayid.includes(song.id)">
-      <button class="unpress" style="float: right;" >
+    <form style="display: inline" (click)="likesong($event,song.id)" *ngIf="!arrayid.includes(song.id)">
+      <button class="unpress" style="float: right;">
         <span class="material-symbols-outlined">
           favorite
         </span></button>
