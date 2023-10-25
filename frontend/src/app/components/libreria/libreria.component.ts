@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LibraryService } from 'src/app/services/library/library.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SongService } from 'src/app/services/song/song.service';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -16,7 +17,8 @@ export class LibreriaComponent implements OnInit {
   temp: any;
 
   constructor(private libraryServ: LibraryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private songServ: SongService
   ) { }
 
   ngOnInit(): void {
@@ -54,5 +56,10 @@ export class LibreriaComponent implements OnInit {
         console.log(response)
       }
     })
+  }
+
+  player():void {
+    this.songServ.setMp3Info(this.likes[0].id,this.likes)
+    console.log()
   }
 }
