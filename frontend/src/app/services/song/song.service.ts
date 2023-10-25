@@ -36,7 +36,6 @@ export class SongService {
   // Set the info for player
   setMp3Info(id: number, list: any) {
     this.mp3Info = { id, list };
-    console.log(this.mp3Info)
   }
 
   // Return function
