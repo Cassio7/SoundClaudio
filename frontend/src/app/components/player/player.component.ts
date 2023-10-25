@@ -61,8 +61,6 @@ export class PlayerComponent {
         console.log(this.mp3?.list)
         // If is the return is not null
         if (this.mp3 != null) {
-          // Get the song selected
-          this.track = this.mp3.id
           // Get the right mp3
           this.find()
         }
@@ -84,7 +82,8 @@ export class PlayerComponent {
       this.audio.play()
     else {
       if (this.mp3 != null)
-        this.track = this.mp3.list[this.mp3.list.length - 1].id;
+      // If this was the first one go to the last
+        this.track = this.mp3.list.length - 1;
       if (this.find())
         this.audio.play()
     }
@@ -97,7 +96,8 @@ export class PlayerComponent {
       this.audio.play()
     else {
       if (this.mp3 != null)
-        this.track = this.mp3.list[0].id;
+      // If this was the last one get back to start
+        this.track = 0;
       if (this.find())
         this.audio.play()
     }
@@ -124,20 +124,21 @@ export class PlayerComponent {
   // Get the right song
   find(): boolean {
     if (this.mp3 != null) {
-      for (let index = 0; index < this.mp3.list.length; index++) {
-        if (this.mp3.list[index].id == this.track) {
-          this.audio.src = this.mp3.list[index].mp3;
-          this.song = {
-            id: this.mp3.list[index].id,
-            namesong: this.mp3.list[index].namesong,
-            img: this.mp3.list[index].img,
-            name: this.mp3.list[index].name,
-            nameart: this.mp3.list[index].nameart,
-            mp3: this.mp3.list[index].mp3,
-          }
-          return true;
+      // Find the song by index, if is null return false
+      if (this.mp3.list[this.track]) {
+        this.audio.src = this.mp3.list[this.track].mp3;
+        this.song = {
+          id: this.mp3.list[this.track].id,
+          namesong: this.mp3.list[this.track].namesong,
+          img: this.mp3.list[this.track].img,
+          name: this.mp3.list[this.track].name,
+          nameart: this.mp3.list[this.track].nameart,
+          mp3: this.mp3.list[this.track].mp3,
         }
+        return true;
       }
+      else
+        return false;
     }
     return false;
   }
@@ -150,11 +151,11 @@ export class PlayerComponent {
 
   //     // While there remain elements to shuffle.
   //     while (currentIndex > 0) {
-    
+
   //       // Pick a remaining element.
   //       randomIndex = Math.floor(Math.random() * currentIndex);
   //       currentIndex--;
-    
+
   //       // And swap it with the current element.
   //       [this.mp3.list[currentIndex], this.mp3.list[randomIndex]] = [
   //         this.mp3.list[randomIndex], this.mp3.list[currentIndex]];
