@@ -51,6 +51,7 @@ router.post('/:id', (req, res) => {
     const query = `
     SELECT 
         songs.id, 
+        songs.mp3,
         songs.name AS namesong, 
         albums.img, 
         albums.name, 
