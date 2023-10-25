@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/user';
 import { LibraryService } from 'src/app/services/library/library.service';
 import { Album } from 'src/app/models/album';
+import { SongService } from 'src/app/services/song/song.service';
 
 @Component({
   selector: 'app-album',
@@ -28,7 +29,8 @@ export class AlbumComponent implements OnInit {
     private albumService: AlbumService,
     private router: Router,
     private authService: AuthService,
-    private libraryServ: LibraryService
+    private libraryServ: LibraryService,
+    private songServ: SongService
   ) { }
 
   // Start the function with the component
@@ -108,5 +110,11 @@ export class AlbumComponent implements OnInit {
         console.log(response)
       }
     })
+  }
+
+  // Send data for player
+  player(event: Event,id:number): void {
+    event.stopPropagation();
+    this.songServ.setMp3Info(id, this.songs)
   }
 }
