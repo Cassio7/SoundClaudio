@@ -36,8 +36,9 @@ export class CaricaComponent implements OnInit {
       window.location.reload();
     }
   }
+  // Send to service title and file mp3
   send(): void {
-    this.userServ.upload(this.dataForm.value.mp3,this.file).subscribe({
+    this.userServ.upload(this.dataForm.value.title,this.file).subscribe({
       next: (response) => {
         console.log(response)
       }
