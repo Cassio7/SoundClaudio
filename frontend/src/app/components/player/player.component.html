@@ -1,8 +1,8 @@
 <nav class="navbar fixed-bottom navbar-light border-top justify-content-center">
   <div class="material-symbols-outlined d-flex">
-    <button class="unpress">skip_previous</button>
+    <button class="unpress" (click)="prev()">skip_previous</button>
     <button class="unpress" (click)="play()">{{audio.paused ? 'play_arrow' : 'pause'}}</button>
-    <button class="unpress">skip_next</button>
+    <button class="unpress" (click)="next()">skip_next</button>
   </div>
   <div style="display: inline; margin-right: 10px;">{{currentTime}}</div>
   <input type="range" class="form-range duration" (input)="durationSlider($event)" value="{{audio.readyState === 0 ? 0 : audio.currentTime}}" min="0" max="{{duration}}">
@@ -16,4 +16,6 @@
       </div>
     </div>
   </div>
+  <div class="d-flex" style="margin-left: 1%;"> <img src="{{song.img}}" alt="damn" width="30px" height="30px"></div>
+  <div class="d-flex text"> <small>{{song.namesong}} - {{song.nameart}}</small></div>
 </nav>

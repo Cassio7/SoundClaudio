@@ -28,4 +28,19 @@ export class SongService {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }
+
+  // For the player
+
+  private mp3Info: { id: number, list: any } | null = null;
+
+  // Set the info for player
+  setMp3Info(id: number, list: any) {
+    this.mp3Info = { id, list };
+    console.log(this.mp3Info)
+  }
+
+  // Return function
+  getMp3Info(): { id: number, list: any } | null {
+    return this.mp3Info;
+  }
 }

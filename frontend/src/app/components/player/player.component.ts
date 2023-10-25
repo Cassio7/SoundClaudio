@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { SongService } from 'src/app/services/song/song.service';
+import { Song } from 'src/app/models/song';
 
 @Component({
   selector: 'app-player',
@@ -12,8 +15,19 @@ export class PlayerComponent {
   musicLength: string = '0:00';
   duration: number = 1;
   currentTime: string = '0:00';
+  track: number = 0;
+  mp3: { id: number, list: any } | null = null;
 
-  constructor() {
+  song: Song= {id: 0,       
+    namesong: '',
+    img: '',
+    name: '',
+    nameart: '',
+    mp3: ''
+  }
+
+  constructor(private authServ: AuthService,
+    private songServ: SongService) {
 
     this.audio.ondurationchange = () => {
       const totalSeconds = Math.floor(this.audio.duration),
@@ -38,21 +52,72 @@ export class PlayerComponent {
   }
 
   play(): void {
-    if (this.audio.paused) {
-      if (this.audio.readyState === 0) {
-        this.audio.src = '../assets/mp3/Forever/Raydar.mp3';
+    // Only if auth
+    if (this.authServ.isAuthenticated()) {
+      if (this.mp3 != this.songServ.getMp3Info() && this.songServ.getMp3Info() != null) {
+        console.log('diversi')
+        // Get the info from service
+        this.mp3 = this.songServ.getMp3Info()
+        console.log(this.mp3?.list)
+        // If is the return is not null
+        if (this.mp3 != null) {
+          // Get the song selected
+          this.track = this.mp3.id
+          // Get the right mp3
+          this.find()
+        }
       }
-      this.audio.play();
+      if (this.audio.paused) {
+        this.audio.play();
+      }
+      else
+        this.audio.pause()
     }
     else
-      this.audio.pause()
-
+      alert("Your are not logged!")
   }
 
+  // Go to the prev song
+  prev(): void{
+    this.track --;
+    this.find()
+    this.audio.play()
+  }
+
+ // Go to the next song
+  next(): void{
+    this.track ++;
+    this.find()
+    this.audio.play()
+  }
+
+  // Control the volume
   volumeSlider(event: any) {
     this.audio.volume = event.target.value / 100;
   }
+
+  // Control the duration of the song
   durationSlider(event: any) {
     this.audio.currentTime = event.target.value;
   }
+
+  // Get the right song
+  find(): void{
+    if(this.mp3 != null){
+      for (let index = 0; index < this.mp3.list.length; index++) {
+        if (this.mp3.list[index].id == this.track) {
+          this.audio.src = this.mp3.list[index].mp3;
+          this.song = {
+            id : this.mp3.list[index].id,
+            namesong : this.mp3.list[index].namesong,
+            img : this.mp3.list[index].img,
+            name : this.mp3.list[index].name,
+            nameart : this.mp3.list[index].nameart,
+            mp3 : this.mp3.list[index].mp3,
+          }
+        }
+      }
+    }
+  }
 }
+
