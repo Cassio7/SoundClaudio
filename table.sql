@@ -141,7 +141,7 @@ insert into songs(name,id_artist,id_album,mp3) value('Forgiveless',4,4,'../asset
 
 -- SongsDivine
 
-insert into songs(name,id_artist,id_album,mp3) value('Congratulation',5,5,'../assets/mp3/Divine/Congratulation.mp3');
+insert into songs(name,id_artist,id_album,mp3) value('Congratulations',5,5,'../assets/mp3/Divine/Congratulations.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Dang!',5,5,'../assets/mp3/Divine/Dang!.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Stay',5,5,'../assets/mp3/Divine/Stay.mp3');
 insert into songs(name,id_artist,id_album,mp3) value('Skin',5,5,'../assets/mp3/Divine/Skin.mp3');
