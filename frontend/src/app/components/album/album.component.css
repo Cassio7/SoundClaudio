@@ -27,6 +27,7 @@
     padding: 0;
     background: none;
     margin-right: 18px;
+    outline: none;
 }
 /* Used for the color of the heart, if the song is already liked is orange */
 .fillfav {
