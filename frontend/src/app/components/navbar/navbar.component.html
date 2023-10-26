@@ -33,6 +33,7 @@
             {{user.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" routerLink="dashboard" *ngIf="user.admin == 1">Admin Dashboard</a>
             <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </div>
