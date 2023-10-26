@@ -59,7 +59,6 @@ export class PlayerComponent {
       if (this.mp3?.id != this.songServ.getMp3Info()?.id && this.songServ.getMp3Info() != null) {
         // Get the info from service
         this.mp3 = this.songServ.getMp3Info()
-        console.log(this.mp3?.list)
         // If is the return is not null
         if (this.mp3 != null) {
           // Get the right mp3
@@ -160,7 +159,6 @@ export class PlayerComponent {
         [this.mp3.list[currentIndex], this.mp3.list[randomIndex]] = [
           this.mp3.list[randomIndex], this.mp3.list[currentIndex]];
       }
-      console.log(this.mp3.list)
     }
   }
 }
