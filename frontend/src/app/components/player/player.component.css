@@ -20,10 +20,9 @@
     position: relative;
 }
 
-.duration[type="range"] {
+.duration{
     width: 550px;
     height: 10px;
-    background-color: #f50 !important;
 }
 
 .text{
