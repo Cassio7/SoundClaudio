@@ -52,6 +52,8 @@ export class SongComponent implements OnInit {
       id: this.temp["id"],
       name: this.temp["name"],
       admin: this.temp["admin"],
+      psw: '',
+      email: '',
     }
     this.commentForm = this.createFormGroup();
   }

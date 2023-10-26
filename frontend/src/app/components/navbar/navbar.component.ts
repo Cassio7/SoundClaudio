@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit {
         id: this.temp["id"],
         name: this.temp["name"],
         admin: this.temp["admin"],
+        psw: '',
+        email: '',
       }
     }
   }

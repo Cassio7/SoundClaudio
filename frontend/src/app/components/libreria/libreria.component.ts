@@ -28,6 +28,8 @@ export class LibreriaComponent implements OnInit {
         id: this.temp["id"],
         name: this.temp["name"],
         admin: this.temp["admin"],
+        psw: '',
+        email: '',
       }
       this.getlikes();
     }
@@ -48,7 +50,7 @@ export class LibreriaComponent implements OnInit {
   }
 
   // Delete song from lib
-  deletesong(event: Event,idsong: number): void {
+  deletesong(event: Event, idsong: number): void {
     // Stop the a to go to the linked song
     event.stopPropagation();
     this.libraryServ.deletesong(idsong, this.user.id).subscribe({
@@ -58,8 +60,8 @@ export class LibreriaComponent implements OnInit {
     })
   }
 
-  player():void {
-    this.songServ.setMp3Info(this.likes[0].id,this.likes)
+  player(): void {
+    this.songServ.setMp3Info(this.likes[0].id, this.likes)
     console.log()
   }
 }
