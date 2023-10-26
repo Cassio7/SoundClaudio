@@ -4,7 +4,7 @@
     <!-- Change to play and pause -->
     <button class="unpress" (click)="play()">{{audio.paused ? 'play_arrow' : 'pause'}}</button>
     <button class="unpress" (click)="next()">skip_next</button>
-    <!-- <button class="unpress" (click)="shuffle()">shuffle</button> -->
+    <button class="unpress" (click)="shuffle()">shuffle</button>
   </div>
   <div style="display: inline; margin-right: 10px;">{{currentTime}}</div>
   <input type="range" class="form-range duration" (input)="durationSlider($event)"
