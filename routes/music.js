@@ -69,7 +69,7 @@ router.post('/:id', (req, res) => {
                 return res.status(200).json(results);
             }
             else
-                return res.status(404).json({ message: "dicoane" });
+                return res.status(404).json({ message: "error" });
         }
     })
 })
