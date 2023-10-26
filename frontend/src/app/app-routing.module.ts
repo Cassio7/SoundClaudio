@@ -14,6 +14,7 @@ import { SongComponent } from './components/song/song.component';
 import { E404Component } from './components/errrors/e404/e404.component';
 import { E400Component } from './components/errrors/e400/e400.component';
 import { E401Component } from './components/errrors/e401/e401.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 
 // All the paths with components
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: "error/404", component: E404Component},
   { path: "error/401", component: E401Component},
   { path: "error/400", component: E400Component},
+  { path: "dashboard", component: DashboardComponent, canActivate: [authGuard]},
   { path: "**", redirectTo:""},
 ];
 
