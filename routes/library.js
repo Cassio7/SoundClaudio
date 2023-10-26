@@ -65,13 +65,16 @@ router.post('/getlikes', (req, res) => {
     const id = req.body.id;
     const query = `
     SELECT
-      songs.name,
+      songs.name AS namesong,
       songs.id,
       songs.mp3,
+      albums.name,
+      artists.name AS nameart,
       albums.img
     FROM libraries
     INNER JOIN songs ON songs.id = libraries.id_song
     INNER JOIN albums ON albums.id = songs.id_album
+    INNER JOIN artists ON albums.id_artist = artists.id
     WHERE libraries.id_user = ?;
   `;
     connection.query(query, [id], (err, results) => {
