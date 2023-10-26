@@ -23,7 +23,7 @@ import { SongComponent } from './components/song/song.component';
 import { E404Component } from './components/errrors/e404/e404.component';
 import { E401Component } from './components/errrors/e401/e401.component';
 import { E400Component } from './components/errrors/e400/e400.component';
-import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component'
 
 @NgModule({
   declarations: [
