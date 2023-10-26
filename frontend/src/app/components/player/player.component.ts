@@ -55,7 +55,8 @@ export class PlayerComponent {
   play(): void {
     // Only if auth
     if (this.authServ.isAuthenticated()) {
-      if (this.mp3 != this.songServ.getMp3Info() && this.songServ.getMp3Info() != null) {
+      // Enter only if the start song is different from other component and the request in not null
+      if (this.mp3?.id != this.songServ.getMp3Info()?.id && this.songServ.getMp3Info() != null) {
         // Get the info from service
         this.mp3 = this.songServ.getMp3Info()
         console.log(this.mp3?.list)
@@ -144,26 +145,23 @@ export class PlayerComponent {
   }
 
   // Shuffle function random song list
-  // shuffle(): void{
-  //   if (this.mp3 != null) {
-  //     console.log(this.songServ.getMp3Info())
-  //     let currentIndex = this.mp3.list.length,  randomIndex;
+  shuffle(): void{
+    if (this.mp3 != null) {
+      let currentIndex = this.mp3.list.length,  randomIndex;
 
-  //     // While there remain elements to shuffle.
-  //     while (currentIndex > 0) {
+      // While there remain elements to shuffle.
+      while (currentIndex > 0) {
 
-  //       // Pick a remaining element.
-  //       randomIndex = Math.floor(Math.random() * currentIndex);
-  //       currentIndex--;
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
 
-  //       // And swap it with the current element.
-  //       [this.mp3.list[currentIndex], this.mp3.list[randomIndex]] = [
-  //         this.mp3.list[randomIndex], this.mp3.list[currentIndex]];
-  //     }
-  //     console.log(this.mp3.list)
-  //     console.log('Dal get ')
-  //     console.log(this.songServ.getMp3Info())
-  //   }
-  // }
+        // And swap it with the current element.
+        [this.mp3.list[currentIndex], this.mp3.list[randomIndex]] = [
+          this.mp3.list[randomIndex], this.mp3.list[currentIndex]];
+      }
+      console.log(this.mp3.list)
+    }
+  }
 }
 
