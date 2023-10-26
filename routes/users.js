@@ -98,22 +98,6 @@ router.post('/login', (req, res) => {
     })
 })
 
-// get all the users, need a token from admin
-router.get('/getall', auth.auth, check.checkadmin, (req, res) => {
-    query = "select * from users"
-    connection.query(query, (err, results) => {
-        if (err)
-            return res.status(400).json(err);
-        else {
-            if (results.length > 0) {
-                return res.status(200).json(results);
-            }
-            else
-                return res.status(404).json({ message: "No users found" });
-        }
-    })
-})
-
 // For save the mp3 file on upload
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -139,7 +123,7 @@ const upload = multer({ storage: storage })
 //   });
 
 // Upload mp3 file
-router.post('/upload',upload.any(), (req, res) => {
+router.post('/upload',upload.any('mp3'), (req, res) => {
     res.status(200).json('File uploaded successfully');
     // query = "insert into songs(name,id_artist,id_album,mp3) value(?,3,3,?);";
     // connection.query(query, [title, mp3], (err, results) => {

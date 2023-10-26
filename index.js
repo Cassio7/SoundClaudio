@@ -10,6 +10,7 @@ const connection = require('./connection');
 const usersRoute = require('./routes/users');
 const musicRoute = require('./routes/music');
 const libraryRoute = require('./routes/library');
+const adminRoute = require('./routes/admin');
 
 //create an instance of the Express, allowing to define and handle routes
 const app = express();
@@ -27,4 +28,5 @@ app.use(express.json({ limit: '50mb' }));
 app.use('/users', usersRoute);
 app.use('/music', musicRoute);
 app.use('/library', libraryRoute);
+app.use('/admin', adminRoute);
 module.exports = app;
