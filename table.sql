@@ -21,7 +21,7 @@ create table albums(
     name varchar(250),
     img varchar(250),
     id_artist int,
-    FOREIGN KEY (id_artist) REFERENCES artists(id)
+    FOREIGN KEY (id_artist) REFERENCES artists(id) ON DELETE CASCADE
 );
 
 create table songs(
@@ -30,16 +30,16 @@ create table songs(
     id_artist int,
     id_album int,
     mp3 varchar(250),
-    FOREIGN KEY (id_album) REFERENCES albums(id),
-    FOREIGN KEY (id_artist) REFERENCES artists(id)
+    FOREIGN KEY (id_album) REFERENCES albums(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_artist) REFERENCES artists(id) ON DELETE CASCADE
 );
 
 create table libraries(
     id int primary key AUTO_INCREMENT,
     id_user int,
     id_song int,
-    FOREIGN KEY (id_user) REFERENCES users(id),
-    FOREIGN KEY (id_song) REFERENCES songs(id)
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_song) REFERENCES songs(id) ON DELETE CASCADE
 );
 
 create table comments(
@@ -47,14 +47,15 @@ create table comments(
     id_user int,
     id_song int,
     comment text,
-    FOREIGN KEY (id_user) REFERENCES users(id),
-    FOREIGN KEY (id_song) REFERENCES songs(id)
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_song) REFERENCES songs(id) ON DELETE CASCADE
 );
 
 -- The admin and cassio passwords are "Password1*" but with hash
 
 insert into users(name,email,password,admin) value('Admin','admin@soundclaudio.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','1');
 insert into users(name,email,password,admin) value('Cassio','cassio@gmail.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','0');
+insert into users(name,email,password,admin) value('Paolo','paolo@gmail.com','$2b$10$z/jMQ6vU/AuItP/RitMwmeR0J6PBMxXuTuxTmpY.PIBWTuAh4kbD6','0');
 
 -- Artists
 
