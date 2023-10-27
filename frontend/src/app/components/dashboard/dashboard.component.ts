@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { response } from 'express';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +20,8 @@ export class DashboardComponent {
   flagsong: boolean = false;
 
   constructor(private adminServ: AdminService,
-    private router: Router) {
+    private router: Router,
+    private authServ:AuthService) {
 
   }
 
@@ -32,9 +33,8 @@ export class DashboardComponent {
         this.flaguser = !this.flaguser ? true : false;
       },
       error: (error) => {
-        if (error.status === 401)
-          // Handle the specific error with status code 401
-          this.router.navigate(['error/401']);
+        // Errors handler
+        this.authServ.errors(error);
       }
     })
   }
@@ -46,6 +46,10 @@ export class DashboardComponent {
         let mes: any = response
         alert(mes.message + ' user id: ' + id)
         window.location.reload();
+      },
+      error: (error) => {
+        // Errors handler
+        this.authServ.errors(error);
       }
     })
   }
@@ -57,6 +61,10 @@ export class DashboardComponent {
         let mes: any = response
         alert(mes.message + ' user id: ' + id)
         window.location.reload();
+      },
+      error: (error) => {
+        // Errors handler
+        this.authServ.errors(error);
       }
     })
   }
@@ -69,9 +77,7 @@ export class DashboardComponent {
         this.flagalbum = !this.flagalbum ? true : false;
       },
       error: (error) => {
-        if (error.status === 401)
-          // Handle the specific error with status code 401
-          this.router.navigate(['error/401']);
+        this.authServ.errors(error);
       }
     })
   }
@@ -83,6 +89,10 @@ export class DashboardComponent {
         let mes: any = response
         alert(mes.message + ' album id: ' + id)
         window.location.reload();
+      },
+      error: (error) => {
+        // Errors handler
+        this.authServ.errors(error);
       }
     })
   }
@@ -95,9 +105,7 @@ export class DashboardComponent {
         this.flagsong = !this.flagsong ? true : false;
       },
       error: (error) => {
-        if (error.status === 401)
-          // Handle the specific error with status code 401
-          this.router.navigate(['error/401']);
+        this.authServ.errors(error);
       }
     })
   }
@@ -109,6 +117,10 @@ export class DashboardComponent {
         let mes: any = response
         alert(mes.message + ' song id: ' + id)
         window.location.reload();
+      },
+      error: (error) => {
+        // Errors handler
+        this.authServ.errors(error);
       }
     })
   }
