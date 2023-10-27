@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -6,7 +7,7 @@ import jwt_decode from "jwt-decode";
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   // Set the token, called by login
   private setToken(token: string) {
@@ -21,7 +22,7 @@ export class AuthService {
   // Return true if there is a token, else false
   isAuthenticated(): boolean {
     const token = this.getToken();
-    if (token) 
+    if (token)
       return true;
     else
       return false;
@@ -45,5 +46,22 @@ export class AuthService {
   // Decode the token to get the informations
   decode(token: string): object {
     return jwt_decode(token);
+  }
+
+  errors(error: any): void {
+    // Handle error token expired
+    if (error.status === 403) {
+      // Add logout
+      this.router.navigate(['error/403']);
+    }
+    if (error.status === 404)
+      // Handle the specific error with status code 404
+      this.router.navigate(['error/404']);
+    if (error.status === 400)
+      // Handle the specific error with status code 400
+      this.router.navigate(['error/400']);
+    if (error.status === 402)
+      // Handle the specific error with status code 402
+      this.router.navigate(['error/402']);
   }
 }
