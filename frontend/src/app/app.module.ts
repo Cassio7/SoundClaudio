@@ -23,7 +23,8 @@ import { SongComponent } from './components/song/song.component';
 import { E404Component } from './components/errrors/e404/e404.component';
 import { E401Component } from './components/errrors/e401/e401.component';
 import { E400Component } from './components/errrors/e400/e400.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { E403Component } from './components/errrors/e403/e403.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component'
     E404Component,
     E401Component,
     E400Component,
-    DashboardComponent
+    DashboardComponent,
+    E403Component
   ],
   imports: [
     BrowserModule,
