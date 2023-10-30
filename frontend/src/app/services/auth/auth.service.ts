@@ -52,6 +52,7 @@ export class AuthService {
     // Handle error token expired
     if (error.status === 403) {
       // Add logout
+      this.logout()
       this.router.navigate(['error/403']);
     }
     if (error.status === 404)
