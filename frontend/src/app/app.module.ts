@@ -24,7 +24,8 @@ import { E404Component } from './components/errrors/e404/e404.component';
 import { E401Component } from './components/errrors/e401/e401.component';
 import { E400Component } from './components/errrors/e400/e400.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { E403Component } from './components/errrors/e403/e403.component'
+import { E403Component } from './components/errrors/e403/e403.component';
+import { ProfileComponent } from './components/profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { E403Component } from './components/errrors/e403/e403.component'
     E401Component,
     E400Component,
     DashboardComponent,
-    E403Component
+    E403Component,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
