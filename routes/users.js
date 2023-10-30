@@ -39,7 +39,7 @@ router.post('/signup', (req, res) => {
                             query = "select * from users where email=?"
                             connection.query(query, [users.email], (err, data) => {
                                 // return JWT token for auth
-                                const response = { id: data[0].id, name: data[0].name, admin: data[0].admin }
+                                const response = { id: data[0].id, name: data[0].name, email: data[0].email ,admin: data[0].admin }
                                 const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                                 console.log("registrato")
                                 return res.status(200).json(token);
@@ -77,7 +77,7 @@ router.post('/login', (req, res) => {
                 bcrypt.compare(users.password, results[0].password, function (err, ress) {
                     // if res == true, password matched
                     if (ress == true) {
-                        const response = { id: results[0].id, name: results[0].name, admin: results[0].admin }
+                        const response = { id: results[0].id, name: results[0].name, email: results[0].email ,admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
                         console.log("Worka login")
                         return res.status(200).json(token);
