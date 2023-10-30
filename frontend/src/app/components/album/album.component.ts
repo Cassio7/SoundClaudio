@@ -84,7 +84,6 @@ export class AlbumComponent implements OnInit {
         }
       },
       error: (error) => {
-        this.authService.errors(error);
       }
     })
   }
