@@ -20,11 +20,24 @@
     position: relative;
 }
 
-.duration{
+.duration {
     width: 550px;
     height: 10px;
 }
 
-.text{
+.text {
     margin-left: 5px;
+}
+
+/* Custom CSS to reverse dropdown positioning for dropup */
+.dropup .dropdown-menu {
+    bottom: 100%;
+    top: auto;
+}
+
+.custom-dropdown-menu {
+    right: auto;
+    /* Reset the right property */
+    left: -300px;
+    /* Move the dropdown to the left */
 }
