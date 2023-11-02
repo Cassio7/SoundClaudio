@@ -22,7 +22,22 @@
   <div class="d-flex" style="margin-left: 1%;"> <img src="{{song.img}}" alt="damn" width="30px" height="30px"
       *ngIf="song.img != ''"></div>
   <div class="d-flex">
-      <small class="text" *ngIf="song.namesong != ''">{{song.namesong}} - {{song.nameart}} <b>{{song.name}}</b></small> 
+    <small class="text" *ngIf="song.namesong != ''">{{song.namesong}} - {{song.nameart}} <b>{{song.name}}</b></small>
   </div>
-
+  <!-- queue -->
+  <div class="btn-group dropup ml-3">
+    <button type="button" class="unpress" data-toggle="dropdown">
+      <span class="material-symbols-outlined">
+        queue_music
+      </span>
+    </button>
+    <ng-container *ngIf="mp3">
+      <div class="dropdown-menu  custom-dropdown-menu">
+        <a class="dropdown-item disabled" *ngFor="let tune of mp3.list">
+            <img src="{{tune.img}}" alt="damn" width="30px" height="30px">
+            {{tune.namesong}} - {{tune.nameart}} <b>{{tune.name}}</b>
+        </a>
+      </div>
+    </ng-container>
+  </div>
 </nav>
