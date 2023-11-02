@@ -61,6 +61,7 @@ export class PlayerComponent {
         this.mp3 = this.songServ.getMp3Info()
         // If is the return is not null
         if (this.mp3 != null) {
+          this.rotateMp3(this.mp3.id)
           // Get the right mp3
           this.find()
         }
@@ -82,7 +83,7 @@ export class PlayerComponent {
       this.audio.play()
     else {
       if (this.mp3 != null)
-      // If this was the first one go to the last
+        // If this was the first one go to the last
         this.track = this.mp3.list.length - 1;
       if (this.find())
         this.audio.play()
@@ -96,7 +97,7 @@ export class PlayerComponent {
       this.audio.play()
     else {
       if (this.mp3 != null)
-      // If this was the last one get back to start
+        // If this was the last one get back to start
         this.track = 0;
       if (this.find())
         this.audio.play()
@@ -119,6 +120,22 @@ export class PlayerComponent {
   // Control the duration of the song
   durationSlider(event: any): void {
     this.audio.currentTime = event.target.value;
+  }
+
+  // Function to reorder items in the 'mp3.list' based on the provided 'id'
+  rotateMp3(id: number) {
+    if (this.mp3 != null) {
+      // Find the index of the input 'id' in the 'list'
+      const index = this.mp3.list.findIndex((item: { id: number; }) => item.id === id);
+      if (index !== -1) {
+        // Reorder the 'list' by moving items after 'id' to the beginning
+        const rotatedList = [
+          ...this.mp3.list.slice(index), // Spread operator, allows to expand the elements index to end
+          ...this.mp3.list.slice(0, index) // 0 to index
+        ];
+        this.mp3.list = rotatedList;
+      }
+    }
   }
 
   // Get the right song
@@ -144,9 +161,9 @@ export class PlayerComponent {
   }
 
   // Shuffle function random song list
-  shuffle(): void{
+  shuffle(): void {
     if (this.mp3 != null) {
-      let currentIndex = this.mp3.list.length,  randomIndex;
+      let currentIndex = this.mp3.list.length, randomIndex;
 
       // While there remain elements to shuffle.
       while (currentIndex > 0) {
