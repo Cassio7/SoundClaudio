@@ -8,7 +8,7 @@
                 <div class="card-body bg-light">
                     <div class="container">
                         <!-- Start Form -->
-                        <form id="contact-form" [formGroup]="dataForm" (ngSubmit)="send()" novalidate>
+                        <form id="contact-form" enctype="multipart/form-data" [formGroup]="dataForm" (ngSubmit)="send()" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Title</label>
