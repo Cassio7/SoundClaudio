@@ -1,6 +1,6 @@
 <h1 style="margin-top: 10%;text-align: center;">Profile Section </h1>
 <hr>
-<table class="table mt-5" style="margin-bottom: 40%;">
+<table class="table mt-5">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -15,6 +15,24 @@
         <td>{{user.name}}</td>
         <td>{{user.email}}</td>
         <td *ngIf="user.admin == 1">Si</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h3 style="text-align: center;">Uploaded Songs</h3>
+  <table class="table mt-5"  style="margin-bottom: 30%;" *ngIf="uploads">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Artist</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let song of uploads">
+        <th scope="row">{{song.id}}</th>
+        <td>{{song.name}}</td>
+        <td>{{song.nameart}}</td>
       </tr>
     </tbody>
   </table>

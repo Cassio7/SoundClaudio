@@ -22,16 +22,21 @@ export class UserService {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }
-  
-  upload(title: string, mp3: File) {
+  // Need a FormData to send the file
+  upload(title: string, id: any, mp3: File) {
     const formData = new FormData();
     formData.append('title', title);
+    formData.append('id', id);
     formData.append('mp3', mp3);
+    // No header because browser to defaul this 'Content-Type': 'multipart/form-data'
+    return this.httpClient.post(this.url + "/users/upload", formData)
+  }
+  
+  myupload(id:any){
     const requestBody = {
-      title: title, // Replace with your desired ID value
-      mp3: mp3
+      id: id, // Replace with your desired ID value
     };
-    return this.httpClient.post(this.url + "/users/upload", formData, {
+    return this.httpClient.post(this.url + "/users/myupload", requestBody, {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     })
   }

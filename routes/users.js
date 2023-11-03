@@ -98,40 +98,38 @@ router.post('/login', (req, res) => {
     })
 })
 
-// For save the mp3 file on upload
+// For save the mp3 file 
 const multer = require('multer');
 const storage = multer.diskStorage({
-    destination: 'test/',
+    destination: 'frontend/src/assets/mp3/More/',
     filename: function (req, file, cb) {
-        cb(null, 'title' + '.mp3')
+        cb(null, req.body.title + '.mp3')
     }
 })
 
 const upload = multer({ storage: storage })
-// Handle file upload with error handling
-// router.post('/upload', (req, res, next) => {
-//     console.log(req.body)
-//     upload.single('mp3')(req, res, (err) => {
-//       if (err) {
-//         // Handle the error
-//         console.error('File upload error', err);
-//         return res.status(500).json('File upload failed');
-//       }
-//       // File has been uploaded and stored successfully
-//       res.status(200).json('File uploaded successfully');
-//     });
-//   });
 
 // Upload mp3 file
-router.post('/upload',upload.any('mp3'), (req, res) => {
-    res.status(200).json('File uploaded successfully');
-    // query = "insert into songs(name,id_artist,id_album,mp3) value(?,3,3,?);";
-    // connection.query(query, [title, mp3], (err, results) => {
-    //     if (err)
-    //         return res.status(400).json(err);
-    //     else
-    //         return res.status(200).json({ message: "Uploaded" });
-    // })
+router.post('/upload',upload.single('mp3'), (req, res) => {
+    const title = req.body.title;
+    const scr = '../assets/mp3/More/'+title+ '.mp3'
+    query = "insert into songs(name,id_user,id_artist,id_album,mp3) value(?,?,3,3,?);";
+    connection.query(query, [title, req.body.id,scr], (err, results) => {
+        if (err)
+            return res.status(400).json(err);
+        else
+            return res.status(200).json({ message: "Uploaded" });
+    })
+})
+
+router.post('/myupload',(req, res) =>{
+    query = 'select songs.id,songs.name,users.name as nameart from songs inner join users on songs.id_user = users.id where users.id = ?'
+    connection.query(query, [req.body.id], (err, results) => {
+        if (err)
+            return res.status(400).json(err);
+        else
+            return res.status(200).json(results);
+    })
 })
 
 module.exports = router;
