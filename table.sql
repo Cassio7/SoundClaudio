@@ -28,9 +28,11 @@ create table songs(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
     id_artist int,
+    id_user int,
     id_album int,
     mp3 varchar(250),
     FOREIGN KEY (id_album) REFERENCES albums(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (id_artist) REFERENCES artists(id) ON DELETE CASCADE
 );
 
