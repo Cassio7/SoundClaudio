@@ -34,8 +34,18 @@
     <ng-container *ngIf="mp3">
       <div class="dropdown-menu  custom-dropdown-menu">
         <a class="dropdown-item disabled" *ngFor="let tune of mp3.list">
+          <!-- Color the song current playing -->
+          <ng-container *ngIf="song.id==tune.id; else elseBlock">
+            <span style="color: #f50;">
+              <img src="{{tune.img}}" alt="damn" width="30px" height="30px">
+              {{tune.namesong}} - {{tune.nameart}} <b>{{tune.name}}</b>
+            </span>
+          </ng-container>
+          <!-- else -->
+          <ng-template #elseBlock>
             <img src="{{tune.img}}" alt="damn" width="30px" height="30px">
             {{tune.namesong}} - {{tune.nameart}} <b>{{tune.name}}</b>
+          </ng-template>
         </a>
       </div>
     </ng-container>
