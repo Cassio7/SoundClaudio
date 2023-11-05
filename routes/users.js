@@ -79,11 +79,9 @@ router.post('/login', (req, res) => {
                     if (ress == true) {
                         const response = { id: results[0].id, name: results[0].name, email: results[0].email ,admin: results[0].admin }
                         const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
-                        console.log("Worka login")
                         return res.status(200).json(token);
                     }
                     else {
-                        console.log("pass non presa");
                         return res.status(400).json({ message: "Password do not match" });
                     }
 
