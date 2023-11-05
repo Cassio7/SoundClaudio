@@ -41,12 +41,10 @@ router.post('/signup', (req, res) => {
                                 // return JWT token for auth
                                 const response = { id: data[0].id, name: data[0].name, email: data[0].email ,admin: data[0].admin }
                                 const token = jwt.sign(response, process.env.TOKEN_KEY, { expiresIn: '2h' });
-                                console.log("registrato")
                                 return res.status(200).json(token);
                             })
                         }
                         else {
-                            console.log("err random")
                             return res.status(500).json(err);
                         }
 
