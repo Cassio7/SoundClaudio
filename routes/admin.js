@@ -112,4 +112,19 @@ router.post('/deletesong', auth.auth, check.checkadmin, (req, res) => {
         }
     })
 })
+
+router.post('/updatetitle', auth.auth, check.checkadmin, (req, res) => {
+    let id = req.body.id;
+    let newtitle = req.body.newtitle;
+    console.log(newtitle)
+    query=`update songs set name = ? where songs.id = ?`;
+    connection.query(query, [newtitle, id], (err, results) => {
+        if (err)
+            return res.status(400).json(err);
+        else {
+            return res.status(200).json({ message: "Updated" });
+        }
+    })
+})
+
 module.exports = router;
