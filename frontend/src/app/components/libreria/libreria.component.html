@@ -12,7 +12,7 @@
                 <img class="card-img-top" src="{{like.img}}" alt="Card image cap">
                 <div class="card-img-overlay ">
                     <div class="card-title ">
-                        <form style="display: inline" (click)="deletesong($event,like.id)">
+                        <form style="display: inline" (click)="deletesong($event,like.id); $event.preventDefault();">
                             <button class="unpress" type="submit">
                                 <span class="material-symbols-outlined fillfav">
                                     favorite

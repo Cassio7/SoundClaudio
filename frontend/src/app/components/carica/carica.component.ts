@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/models/user';
+
 @Component({
   selector: 'app-carica',
   templateUrl: './carica.component.html',
@@ -43,19 +44,20 @@ export class CaricaComponent implements OnInit {
     })
   }
   // On file Select 
-  onChange(event:any) {
+  onChange(event: any) {
     this.file = event.target.files[0];
-    if(this.file.type != 'audio/mpeg'){
+    if (this.file.type != 'audio/mpeg') {
       alert('Plese put a mp3 audio!');
       window.location.reload();
     }
   }
   // Send to service title and file mp3
   send(): void {
-    this.userServ.upload(this.dataForm.value.title,this.user.id,this.file).subscribe({
+    this.userServ.upload(this.dataForm.value.title, this.user.id, this.file).subscribe({
       next: (response) => {
         let mes: any = response
         alert(mes.message)
+        window.location.reload();
       }
     })
   }
