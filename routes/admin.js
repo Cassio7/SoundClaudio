@@ -113,6 +113,7 @@ router.post('/deletesong', auth.auth, check.checkadmin, (req, res) => {
     })
 })
 
+// Update title song by id
 router.post('/updatetitle', auth.auth, check.checkadmin, (req, res) => {
     let id = req.body.id;
     let newtitle = req.body.newtitle;
