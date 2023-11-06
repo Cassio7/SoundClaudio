@@ -77,4 +77,16 @@ export class AdminService {
         .set("Authorization", "Bearer " + this.authServ.getToken())
     })
   }
+
+  // Update song title by id
+  updatesong(id:number, newtitle: string){
+    const requestBody = {
+      id: id,
+      newtitle: newtitle
+    };
+    return this.httpClient.post(this.url + "/admin/updatetitle", requestBody, {
+      headers: new HttpHeaders().set("Content-Type", "application/json")
+        .set("Authorization", "Bearer " + this.authServ.getToken())
+    })
+  }
 }

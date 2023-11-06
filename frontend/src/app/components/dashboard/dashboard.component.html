@@ -64,16 +64,26 @@
             <th scope="col">Album name</th>
             <th scope="col">Artist name</th>
             <th scope="col">Cover</th>
+            <th scope="col">Mod Title</th>
             <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody>
+        <!-- Fetch all the songs -->
         <tr *ngFor="let song of songs">
             <th scope="row">{{song.id}}</th>
-            <td>{{song.name}}</td>
+            <ng-container *ngIf="song.id == flagtitle; else elseBlock">
+                <!-- Two way binding -->
+                <td><input type="text" [(ngModel)]="newname"></td>
+            </ng-container>
+            <ng-template #elseBlock><td>{{song.name}}</td></ng-template>
             <td>{{song.namealb}}</td>
             <td>{{song.nameart}}</td>
             <td><img src="{{song.img}}" alt="cover" width="100px" height="100px"></td>
+            <ng-container *ngIf="song.id == flagtitle; else elseBlock1">
+                <td (click)="updatetitle(song.id,newname)"><button type="button" class="btn btn-info">Send</button></td>
+            </ng-container>
+            <ng-template #elseBlock1><td (click)="modsong(song.id)"><button type="button" class="btn btn-warning">Mod</button></td></ng-template>
             <td (click)="deletesong(song.id)"><button type="button" class="btn btn-danger">Delete</button></td>
         </tr>
     </tbody>

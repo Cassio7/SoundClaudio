@@ -18,10 +18,12 @@ export class DashboardComponent {
   flaguser: boolean = false;
   flagalbum: boolean = false;
   flagsong: boolean = false;
+  flagtitle: number = -1;
+  newname:string = '';
 
   constructor(private adminServ: AdminService,
     private router: Router,
-    private authServ:AuthService) {
+    private authServ: AuthService) {
 
   }
 
@@ -97,6 +99,11 @@ export class DashboardComponent {
     })
   }
 
+  modsong(id: number): void {
+    this.flagtitle = id;
+    this.newname = '';
+  }
+
   //Get all sogns 
   getallsongs(): void {
     this.adminServ.getallsongs().subscribe({
@@ -113,6 +120,22 @@ export class DashboardComponent {
   // Call api to delete song, pass id
   deletesong(id: number): void {
     this.adminServ.deletesong(id).subscribe({
+      next: (response) => {
+        let mes: any = response
+        alert(mes.message + ' song id: ' + id)
+        window.location.reload();
+      },
+      error: (error) => {
+        // Errors handler
+        this.authServ.errors(error);
+      }
+    })
+  }
+
+  // Update song title by id
+  updatetitle(id: number, newtitle: string): void {
+    console.log(newtitle)
+    this.adminServ.updatesong(id,newtitle).subscribe({
       next: (response) => {
         let mes: any = response
         alert(mes.message + ' song id: ' + id)
