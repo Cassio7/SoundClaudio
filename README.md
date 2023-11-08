@@ -5,7 +5,7 @@ Replica of SoundCloud for educational purpose
 The project is made with Angular, NodeJS and MYSQL.
 After clone the repo you need to follow this steps to test and try this project.
 - First thing first is crate your database so go inside MYSQL and write `CREATE DATABASE soundclaudio;`.
-- Now set your database with `USE soundclaudio;`,  open the file *table.sql* and copy all the query exept the first one.
+- Now set your database with `USE soundclaudio;`,  open the file *table.sql* and copy all the query **exept the first one**.
 - After that you need to create a *.env* file inside the folder, and put this info inside it (replace **INFO** with your informations):
 
 ```
