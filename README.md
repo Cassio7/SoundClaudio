@@ -1,4 +1,4 @@
-# SoundClaudio ![alt text]((https://github.com/Cassio7/SoundClaudio/tree/main/frontend/src/assets/img/Icon.jpg?raw=true))
+# SoundClaudio ![alt text](https://github.com/Cassio7/SoundClaudio/blob/main/frontend/src/assets/img/Icon.jpg?raw=true)
 Replica of SoundCloud for educational purpose
 
 ## What you need
