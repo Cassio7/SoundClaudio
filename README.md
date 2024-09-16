@@ -19,11 +19,12 @@ DB_USERNAME = INFO
 DB_PASSWORD = INFO
 DB_NAME = soundclaudio
 
-//JWT
+//JWT SECRET KEY
 TOKEN_KEY = 09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90a832bd3ff9d42710a4da095a2ce285b009f0c3730cd9b8e1af3eb84df6611
 
 ```
-- Of course you need to `npm install` all the dependency on both parts, so use that command on the main folder and inside frontend folder!
+**The secret key was needed for this education project, but never send it again!**
+- You need to `npm install` all the dependency on both parts, so use that command on the main folder and inside frontend folder!
 
 ## Runn
 For execute backend: `npm start`
